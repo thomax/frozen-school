@@ -10,7 +10,7 @@
 
   // Handle update of game state
   function handleStateChange(nextState) {
-    if (nextState === 'game') {
+    if (nextState === 'gameRunning') {
       goToLocation(startLocation)
     }
     setState(nextState)
@@ -25,14 +25,14 @@
 <main>
   <h1>App state: {currentState}</h1>
   {#if currentState === 'welcome'}
-    <button on:click={() => handleStateChange('game')}>Play now!</button>
+    <button on:click={() => handleStateChange('gameRunning')}>Play now!</button>
     <Welcome />
-  {:else if currentState === 'game'}
+  {:else if currentState === 'gameRunning'}
     <button on:click={() => handleStateChange('welcome')}>Go to Welcome Page</button>
     <button on:click={() => handleStateChange('gameOver')}>Go to Game Over Page</button>
     <Game />
   {:else if currentState === 'gameOver'}
-    <button on:click={() => handleStateChange('game')}>Play again!</button>
+    <button on:click={() => handleStateChange('gameRunning')}>Play again!</button>
     <GameOver />
   {:else}
     <div>Alas, {currentState} is an unknown game state :/</div>
