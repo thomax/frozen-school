@@ -2,26 +2,40 @@
   import Welcome from './lib/Welcome.svelte'
   import Game from './lib/Game.svelte'
   import GameOver from './lib/GameOver.svelte'
-  import {appMode} from './lib/dataStore.js'
+  import {appState, setState} from './lib/dataStores/stateStore.js'
+  import {goToLocation} from './lib/dataStores/locationStore'
 
-  function handleModeChange(newMode) {
-    $appMode = newMode
+  const startLocation = 'fc307'
+  let currentState = $appState
+
+  // Handle update of game state
+  function handleStateChange(nextState) {
+    if (nextState === 'game') {
+      goToLocation(startLocation)
+    }
+    setState(nextState)
   }
+
+  // Listen to changes on location
+  appState.subscribe((newState) => {
+    currentState = newState
+  })
 </script>
 
 <main>
-  <h1>App</h1>
-
-  {#if $appMode === 'gameOver'}
-    <button on:click={() => handleModeChange('game')}> Play again! </button>
-    <div class="uiBox"><GameOver /></div>
-  {:else if $appMode === 'game'}
-    <button on:click={() => handleModeChange('welcome')}>Go to welcome</button>
-    <button on:click={() => handleModeChange('gameOver')}>Game Over</button>
-    <div class="uiBox"><Game /></div>
+  <h1>App state: {currentState}</h1>
+  {#if currentState === 'welcome'}
+    <button on:click={() => handleStateChange('game')}>Play now!</button>
+    <Welcome />
+  {:else if currentState === 'game'}
+    <button on:click={() => handleStateChange('welcome')}>Go to Welcome Page</button>
+    <button on:click={() => handleStateChange('gameOver')}>Go to Game Over Page</button>
+    <Game />
+  {:else if currentState === 'gameOver'}
+    <button on:click={() => handleStateChange('game')}>Play again!</button>
+    <GameOver />
   {:else}
-    <button on:click={() => handleModeChange('game')}>Play!</button>
-    <div class="uiBox"><Welcome /></div>
+    <div>Alas, {currentState} is an unknown game state :/</div>
   {/if}
 </main>
 

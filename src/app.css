@@ -26,7 +26,6 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -37,6 +36,7 @@ body {
   margin: 0 auto;
   padding: 0;
   text-align: center;
+  border: 1px solid red;
 }
 
 @media (prefers-color-scheme: light) {
@@ -55,6 +55,16 @@ body {
 .uiBox {
   border: 1px solid black;
   border-radius: 3px;
+  margin: 1em 1em 1em 1em;
   width: 96vw;
+}
+
+#gameComponent {
+  background-color: pink;
+}
+
+.locationCreator {
+  margin-top: 20px;
+  font-size: 0.7rem;
 }
 
