@@ -2,7 +2,7 @@
   export let location
 </script>
 
-<div id="location">
+<div>
   <h1>{location.title}</h1>
   <div>
     You've somehow found an unexisting room. There's no getting out of this situation, you'll need

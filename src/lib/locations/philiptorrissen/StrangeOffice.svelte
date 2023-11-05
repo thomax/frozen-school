@@ -3,7 +3,7 @@
   export let location
 </script>
 
-<div id="location">
+<div>
   <h1>{location.title}</h1>
   <div>A creepy office</div>
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
