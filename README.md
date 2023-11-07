@@ -12,6 +12,31 @@ This is a mystery/exploration sort of game where the player tries to avoid a fro
 
 ## Interne API-er
 
+### Oppdatere location
+
+Bruk denne når du skal navigere til en ny location
+
+```js
+import {goToLocation} from './lib/dataStores/locationStore'
+goToLocation('someLocation')
+```
+
+### Oppdatere appState
+
+```js
+import {setState} from './lib/dataStores/stateStore.js'
+setState(nextState)
+```
+
+### Oppdatere character
+
+```js
+import {setState} from './lib/dataStores/characterStore.js'
+const update = {temperature: 26}
+updateCharacter(update)
+```
+
+
 ## Utvikling
 
 Kjør appen i dev-mode med `npm run dev`

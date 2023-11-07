@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {readable, writable} from 'svelte/store'
+import {writable} from 'svelte/store'
 
 // On first load, get stored location from local storage
 const localStorageCurrentLocation = localStorage.currentLocation

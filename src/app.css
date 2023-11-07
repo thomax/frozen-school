@@ -58,6 +58,10 @@ body {
   width: 96vw;
 }
 
+#characterComponent {
+  background-color: pink;
+}
+
 #gameComponent {
   background-color: rgba(200, 200, 200);
 }
