@@ -12,10 +12,11 @@ export const character = writable(localStorageCharacter)
 
 // Call this to update the character
 export function updateCharacter(update, freshStart = false) {
-  // Merge update on top of existing character
   if (freshStart) {
+    // Reset to default character, ignoring any update object
     character.set(Object.assign({}, defaultCharacter))
   } else {
+    // Merge update object on top of existing character
     const updatedCharacter = Object.assign(get(character), update)
     character.set(updatedCharacter)
   }
