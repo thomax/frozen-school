@@ -1,5 +1,6 @@
 <script>
   import {character, updateCharacter} from './dataStores/characterStore.js'
+  import {setGameState} from './dataStores/stateStore.js'
   let localCharacter
 
   function handleChangeTemperature(amount) {
@@ -8,8 +9,11 @@
 
   // Listen for changes to character
   character.subscribe((update) => {
-    console.log('update char', JSON.stringify(update, null, 2))
+    console.log('Update character', JSON.stringify(update, null, 2))
     localCharacter = update
+    if (localCharacter.temperature < 1) {
+      setGameState('gameOver')
+    }
   })
 </script>
 
