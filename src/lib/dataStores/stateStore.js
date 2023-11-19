@@ -1,37 +1,44 @@
 // @ts-nocheck
-import {writable} from 'svelte/store'
+import {get, writable} from 'svelte/store'
 import { startTemperatureCountDown, stopTemperatureCountDown,updateCharacter } from './characterStore.js'
 
+const defaultGameState =  {
+  status: "welcome",
+  beganAt: null,
+  endedAt: null
+}
+
 // On first load, get stored gameState from local storage
-const localStorageState = localStorage.gameState || "welcome"
+const localStorageGameState = localStorage.gameState ? JSON.parse(localStorage.gameState) : defaultGameState
 
-// For keeping track of how long the game lasts
-let gameBeganAt
-let gameEndedAt
 
-export const gameState = writable(localStorageState)
+export const gameState = writable(localStorageGameState)
 
-// Call this to trigger new state
-export function setGameState(newState) {
+// Call this to trigger new status
+export function setGameStatus(newStatus) {
+  let updatedState = get(gameState)
+  updatedState.status = newStatus
   stopTemperatureCountDown()
-  if (newState === 'gameRunning') {
+  if (newStatus === 'gameRunning') {
     updateCharacter(null, true)
     startTemperatureCountDown()
-    gameBeganAt = new Date()
-    gameEndedAt = null
+    updatedState.beganAt = new Date()
+    updatedState.endedAt = null
   }
-  if (newState === 'gameOver') {
-    gameEndedAt = new Date()
+  if (newStatus === 'gameOver') {
+    updatedState.endedAt = new Date()
   }
-  gameState.set(newState)
+  updatedState = Object.assign({}, updatedState)
+  gameState.set(updatedState)
 }
 
 export function getGameDuration() {
-  const duration = gameEndedAt.getTime() - gameBeganAt.getTime()
+  const tempState = get(gameState)
+  const duration = new Date(tempState.endedAt).getTime() - new Date(tempState.beganAt).getTime()
   return Math.floor(duration/1000)
 }
 
 // Whenever gameState changes, write it to localStorage
 gameState.subscribe((value) => {
-  localStorage.gameState = value
+  localStorage.gameState = JSON.stringify(value)
 })

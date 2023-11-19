@@ -1,5 +1,5 @@
 // @ts-nocheck
-import {writable, get} from 'svelte/store'
+import {get, writable} from 'svelte/store'
 const defaultCharacter = {temperature: 100, health: 15}
 let countdownInterval
 
