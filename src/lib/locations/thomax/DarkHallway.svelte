@@ -9,4 +9,5 @@
   <button on:click={() => goToLocation('fc307')}>Back to the frozen classroom</button>
   <button on:click={() => goToLocation('so')}>Strange office</button>
   <button on:click={() => goToLocation('ki')}>Kitchen</button>
+  <button on:click={() => goToLocation('bi')}>Bibliotek</button>
 </div>

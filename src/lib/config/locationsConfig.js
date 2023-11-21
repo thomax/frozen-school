@@ -3,6 +3,7 @@ import FrozenClassroom from '../locations/thomax/FrozenClassroom.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
 import StrangeOffice from '../locations/philiptorrissen/StrangeOffice.svelte'
 import Room404 from '../locations/thomax/Room404.svelte'
+import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
 
 const roomNotFoundId = '404'
 
@@ -29,6 +30,12 @@ const locationsConfig = [
     id: '404',
     title: 'A room named 404',
     component: Room404
+  },
+  {
+    id: 'bi',
+    title: 'Bibliotek',
+    author: 'aakonHO-IN',
+    component: Bibliotek,
   }
 ]
 
