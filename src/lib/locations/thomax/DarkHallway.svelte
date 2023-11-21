@@ -10,4 +10,5 @@
   <button on:click={() => goToLocation('so')}>Strange office</button>
   <button on:click={() => goToLocation('ki')}>Kitchen</button>
   <button on:click={() => goToLocation('bi')}>Bibliotek</button>
+  <button on:click={() => goToLocation('lf')}>Locker with fireplace</button>
 </div>

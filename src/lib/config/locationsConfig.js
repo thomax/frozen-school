@@ -6,6 +6,7 @@ import Room404 from '../locations/thomax/Room404.svelte'
 import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
 import Toilets from '../locations/teodororjansen/Toilets.svelte'
 
+import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
 
 const locationsConfig = [
@@ -37,6 +38,12 @@ const locationsConfig = [
     title: 'Bibliotek',
     author: 'aakonHO-IN',
     component: Bibliotek,
+  },
+  {
+    id: 'lf',
+    title: 'Locker with fireplace',
+    author: 'jscode1003',
+    component: LockerWithFireplace
   }
 ]
 
