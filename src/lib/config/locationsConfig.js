@@ -5,6 +5,7 @@ import StrangeOffice from '../locations/philiptorrissen/StrangeOffice.svelte'
 import Room404 from '../locations/thomax/Room404.svelte'
 import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
 import Toilets from '../locations/teodororjansen/Toilets.svelte'
+import EmptyRoom from '../locations/NicolaiHindenes/EmptyRoom.svelte'
 
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
@@ -27,6 +28,12 @@ const locationsConfig = [
     title: 'Strange office',
     author: 'philiptorrissen',
     component: StrangeOffice
+  },
+  {
+    id: 'em',
+    title: 'Empty room',
+    author: 'NicolaiHindenes',
+    componenet: EmptyRoom
   },
   {
     id: '404',

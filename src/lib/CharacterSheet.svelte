@@ -16,9 +16,15 @@
   })
 </script>
 
+
+
 <div id="characterComponent">
   <h3>Character sheet</h3>
-  <button on:click={() => handleChangeTemperature(1)}>increase</button>
+  <button on:click={() => handleChangeTemperature(15)}>increase</button>
   <button on:click={() => handleChangeTemperature(-1)}>decrease</button>
-  <pre>{JSON.stringify(localCharacter, null, 2)}</pre>
+  <div class="outer">
+    <div class="inner" style="width: {localCharacter.temperature}%; background-color: hsl({(100 - localCharacter.temperature) * 2.4}, 100%, 50%);"></div>
+  </div> 
 </div>
+
+

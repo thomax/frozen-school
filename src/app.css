@@ -71,3 +71,19 @@ body {
   font-size: 0.7rem;
 }
 
+.inner, .outer{
+  height: 40px;
+  border-radius: 10px;
+}
+
+.outer {
+  width: 80vw;
+  margin: 30px auto;
+  background-color: transparent;
+  border: 1px solid #222;
+}
+
+.inner {
+  background-color: blue;
+  transition: width 0.5s ease;
+}
