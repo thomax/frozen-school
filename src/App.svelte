@@ -26,6 +26,7 @@
   <h1>App state: {currentGameStatus}</h1>
   {#if currentGameStatus === 'welcome'}
     <button on:click={() => handleStatusChange('gameRunning')}>Play now!</button>
+
     <Welcome />
   {:else if currentGameStatus === 'gameRunning'}
     <button on:click={() => handleStatusChange('welcome')}>Go to Welcome Page</button>
