@@ -36,6 +36,12 @@ const locationsConfig = [
     componenet: EmptyRoom
   },
   {
+    id: 'toi',
+    title: 'Toilets',
+    author: 'teodororjansen',
+    component: Toilets
+  },
+  {
     id: '404',
     title: 'A room named 404',
     component: Room404
