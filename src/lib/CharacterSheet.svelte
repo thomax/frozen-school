@@ -23,7 +23,7 @@
   <button on:click={() => handleChangeTemperature(15)}>increase</button>
   <button on:click={() => handleChangeTemperature(-1)}>decrease</button>
   <div class="outer">
-    <div class="inner" style="width: {localCharacter.temperature}%; background-color: hsl({(100 - localCharacter.temperature) * 2.4}, 100%, 50%);"></div>
+    <div class="inner" style="width: {localCharacter.temperature}%; background-color: rgb({localCharacter.temperature * 2.55}, 0, {255 - localCharacter.temperature * 2.55});"></div>
   </div> 
 </div>
 
