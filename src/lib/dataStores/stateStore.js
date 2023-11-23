@@ -14,6 +14,8 @@ const localStorageGameState = localStorage.gameState ? JSON.parse(localStorage.
 
 export const gameState = writable(localStorageGameState)
 
+setGameStatus(get(gameState).status) // Needed to set correct state if user reloads the page, i.e. set status based on localStorage value
+
 // Call this to trigger new status
 export function setGameStatus(newStatus) {
   let updatedState = get(gameState)

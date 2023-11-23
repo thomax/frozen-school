@@ -34,6 +34,7 @@ export function startTemperatureCountDown() {
 // Stop countdown
 export function stopTemperatureCountDown() {
   clearInterval(countdownInterval)
+  countdownInterval = null
 }
 
 // Whenever character changes, write it to localStorage
