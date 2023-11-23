@@ -1,6 +1,6 @@
 // @ts-nocheck
 import {get, writable} from 'svelte/store'
-const defaultCharacter = {temperature: 100, health: 15}
+const defaultCharacter = {temperature: 100, health: 15, inventory: []}
 let countdownInterval
 
 // On first load, get stored character from local storage
