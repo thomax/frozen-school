@@ -3,10 +3,11 @@
 Et kodeprosjekt for IT2@vika-vgs 2023/2024.
 
 ## Konseptet: En skole på vintern
-  - du sovnet i timen, våkner opp midt på natta og det er...
+  - Du sovnet i timen, våkner opp midt på natta og det er...
   - ...kuldestress!
-  - du kommer til å dø av kulde, målet er bare å overleve lengst mulig
-  - tidsspesifikke missions?
+  - En temperatur-indikator teller nådeløst nedover, og når den kommer til 0 er du død
+  - Du kommer til å dø av kulde, målet er bare å overleve lengst mulig
+  - Elevene i prosjektet har individuelt ansvar for egne rom ("Location") og UI-et tilbyr en måte å navigere fra rom til rom. Hvert rom har en egen utfordring, og er håpet er at de er designet på en slik måte at de tilbyr "replayability" - de kan spilles på nytt.
 
 This is a mystery/exploration sort of game where the player tries to avoid a frozen death for as long as possible. Built in a modular fashion, so plugging in new `Location` components is easy.
 
