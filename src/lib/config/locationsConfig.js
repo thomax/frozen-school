@@ -6,6 +6,7 @@ import Room404 from '../locations/thomax/Room404.svelte'
 import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
 import Toilets from '../locations/teodororjansen/Toilets.svelte'
 import EmptyRoom from '../locations/NicolaiHindenes/EmptyRoom.svelte'
+import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
@@ -57,6 +58,12 @@ const locationsConfig = [
     title: 'Locker with fireplace',
     author: 'jscode1003',
     component: LockerWithFireplace
+  },
+  {
+    id: 'caf',
+    title: 'Cafeteria',
+    author: 'shimarikuyo',
+    component: Cafeteria
   }
 ]
 
