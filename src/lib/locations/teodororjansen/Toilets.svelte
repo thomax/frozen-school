@@ -11,7 +11,7 @@
   })
 </script>
 
-<div class="toilets">
+<div class="toilets" bind:this={mainElement}>
   <h1>{location.title}</h1>
   <div>Toilets</div>
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
