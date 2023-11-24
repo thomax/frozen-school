@@ -1,7 +1,7 @@
 # The Concept
 
 Theme: "Frozen School" is set in a school during winter where the player awakens in the night to face a freezing environment.
-Objective: The main goal is survive as long as you can, against a dropping temperature. A temperature indicator emphasizes the urgency. 
+The goal is survive as long as possible, against a dropping temperature. A temperature indicator emphasizes the urgency. 
 
 ### Temperature Mechanics
 A dynamic temperature system that decreases over time and due to actions/events. There are ways to slow down or temporarily reverse the temperature drop (e.g., finding warm clothing, turning on heaters, ingesting warm food).
