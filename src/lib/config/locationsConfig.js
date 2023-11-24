@@ -30,12 +30,15 @@ const locationsConfig = [
     component: StrangeOffice
   },
   {
+<<<<<<< Updated upstream
     id: 'em',
     title: 'Empty room',
     author: 'NicolaiHindenes',
     componenet: EmptyRoom
   },
   {
+=======
+>>>>>>> Stashed changes
     id: 'toi',
     title: 'Toilets',
     author: 'teodororjansen',
