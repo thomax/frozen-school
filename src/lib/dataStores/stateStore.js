@@ -1,6 +1,6 @@
 // @ts-nocheck
 import {get, writable} from 'svelte/store'
-import { startTemperatureCountDown, stopTemperatureCountDown,updateCharacter } from './characterStore.js'
+import { startTemperatureCountDown, stopTemperatureCountDown, updateCharacter } from './characterStore.js'
 
 const defaultGameState =  {
   status: "welcome",
@@ -14,13 +14,20 @@ const localStorageGameState = localStorage.gameState ? JSON.parse(localStorage.
 
 export const gameState = writable(localStorageGameState)
 
-setGameStatus(get(gameState).status) // Needed to set correct state if user reloads the page, i.e. set status based on localStorage value
+// If we're in the middle of a game, ensure countdown is running
+if (get(gameState).status === 'gameRunning') {
+  startTemperatureCountDown()
+}
 
 // Call this to trigger new status
 export function setGameStatus(newStatus) {
   let updatedState = get(gameState)
   updatedState.status = newStatus
-  stopTemperatureCountDown()
+  if (newStatus === 'welcome') {
+    stopTemperatureCountDown()
+    updatedState.beganAt = null
+    updatedState.endedAt = null    
+  }
   if (newStatus === 'gameRunning') {
     updateCharacter(null, true)
     startTemperatureCountDown()
@@ -28,6 +35,7 @@ export function setGameStatus(newStatus) {
     updatedState.endedAt = null
   }
   if (newStatus === 'gameOver') {
+    stopTemperatureCountDown()
     updatedState.endedAt = new Date()
   }
   updatedState = Object.assign({}, updatedState)
