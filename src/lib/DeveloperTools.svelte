@@ -12,8 +12,8 @@
     changeTemperature(amount)
   }
 
-  function handleChangeFreezeRate(amount) {
-    localFreezeRate = localFreezeRate * amount
+  function handleChangeFreezeRate(multiplier) {
+    localFreezeRate = localFreezeRate * multiplier
     changeFreezeRate(localFreezeRate)
   }
 
