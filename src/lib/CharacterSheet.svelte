@@ -40,6 +40,7 @@
 
 <div id="characterComponent">
   <h3>Character sheet</h3>
+<<<<<<< Updated upstream
   <button on:click={() => handleChangeTemperature(15)}>increase</button>
   <button on:click={() => handleChangeTemperature(-1)}>decrease</button>
   <button on:click={() => changeFreezeRate(2)}>Make it colder</button>
@@ -49,4 +50,11 @@
       <img src="{icon}" alt="icon" width="100px">
     </div>
   </div> 
+=======
+  <button on:click={() => handleChangeTemperature(-1)}>decrease</button>
+  <button on:click={() => handleChangeTemperature(15)}>increase</button>
+  <div class="outlineBox">
+    <div class="bar" style="width: {localCharacter.temperature}%"></div>
+  </div>
+>>>>>>> Stashed changes
 </div>

@@ -16,3 +16,4 @@
   <svelte:component this={location.component} {location} />
   <div class="locationCreator">Location created by: {location.author}</div>
 </div>
+
