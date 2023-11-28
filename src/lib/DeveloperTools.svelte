@@ -1,18 +1,20 @@
 <script>
-  import {character, changeTemperature, changeFreezeRate} from './dataStores/characterStore.js'
+  import {character, changeTemperature} from './dataStores/characterStore.js'
   import {currentLocation} from './dataStores/locationStore.js'
-  import {gameState} from './dataStores/stateStore.js'
+  import {gameState, changeFreezeRate} from './dataStores/stateStore.js'
 
   let localGameState
   let localCharacter
   let localLocation
+  let localFreezeRate = 1
 
   function handleChangeTemperature(amount) {
     changeTemperature(amount)
   }
 
   function handleChangeFreezeRate(amount) {
-    changeFreezeRate(amount)
+    localFreezeRate = localFreezeRate * amount
+    changeFreezeRate(localFreezeRate)
   }
 
   // Listen for changes to character
@@ -20,12 +22,13 @@
     localCharacter = updatedCharacter
   })
 
-  // Listen for changes to character
+  // Listen for changes to game state
   gameState.subscribe((updatedGateState) => {
     localGameState = updatedGateState
+    localFreezeRate = localGameState.freezeRate
   })
 
-  // Listen for changes to character
+  // Listen for changes to location
   currentLocation.subscribe((updatedLocation) => {
     localLocation = updatedLocation
   })
@@ -35,8 +38,8 @@
   <h3>Developer Tools</h3>
   <button on:click={() => handleChangeTemperature(15)}>increase</button>
   <button on:click={() => handleChangeTemperature(-1)}>decrease</button>
-  <button on:click={() => changeFreezeRate(2)}>Make it colder</button>
-  <button on:click={() => changeFreezeRate(0.5)}>Make it warmer</button>
+  <button on:click={() => handleChangeFreezeRate(2)}>Make it colder</button>
+  <button on:click={() => handleChangeFreezeRate(0.5)}>Make it warmer</button>
   <div>
     <h2>Game state</h2>
     <pre>
@@ -55,6 +58,6 @@
 
 <style>
   #devToolsComponent {
-    border: 1px solid blue;
+    border: 2px solid blue;
   }
 </style>

@@ -2,7 +2,7 @@
 import {writable} from 'svelte/store'
 
 // On first load, get stored location from local storage
-const localStorageCurrentLocation = localStorage.currentLocation
+const localStorageCurrentLocation = localStorage.currentLocation 
 
 export let currentLocation = writable(localStorageCurrentLocation)
 

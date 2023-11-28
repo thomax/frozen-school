@@ -1,16 +1,13 @@
 // @ts-nocheck
 import {get, writable} from 'svelte/store'
+import {gameState} from './stateStore'
 
 const defaultCharacter = {temperature: 100, health: 15, inventory: []}
-const defaultFreezeRate = 1
-
 let countdownInterval
-let freezeRate = defaultFreezeRate
+let localFreezeRate
 
 // On first load, get stored character from local storage
-// if no stored character, use default
-const localStorageCharacter = localStorage.character ? JSON.parse(localStorage.character) : undefined
-
+const localStorageCharacter = localStorage.character ? JSON.parse(localStorage.character) : null
 export const character = writable(localStorageCharacter)
 
 
@@ -33,21 +30,12 @@ export function changeTemperature(fixedAmount) {
   character.set(updatedCharacter)
 }
 
-// Call this to adjust the rate at which the character gets golder
-// Can be used e.g. if the character enters a particulary warm of cold location
-// multiplier > 1 for a quicker death
-// multiplier < 1 for a slower death
-export function changeFreezeRate(multiplier) {
-  freezeRate = freezeRate * multiplier
-}
-
-
 // Count down temperature with freezeRate per 1000 ms
 export function startTemperatureCountDown() {
   if (!countdownInterval) {
     countdownInterval = setInterval(() => {
       const {temperature} = get(character)
-      const charUpdate = {temperature: temperature - freezeRate}
+      const charUpdate = {temperature: temperature - localFreezeRate}
       updateCharacter(charUpdate)
     }, 1000)
   }
@@ -65,3 +53,9 @@ export function stopTemperatureCountDown() {
 character.subscribe((updatedCharacter) => {
   localStorage.character = JSON.stringify(updatedCharacter)
 })
+
+// Listen for changes in game state
+gameState.subscribe((updatedGameState) => {
+  localFreezeRate = updatedGameState.freezeRate
+})
+
