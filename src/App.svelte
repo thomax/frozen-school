@@ -38,6 +38,11 @@
   {:else}
     <div>Alas, {currentGameStatus} is an unknown game state :/</div>
   {/if}
+
+<div><button on:click={() => handleChangeTemperature(15)}>increase</button>
+  <button on:click={() => handleChangeTemperature(-1)}>decrease</button>
+  <button on:click={() => changeFreezeRate(2)}>Make it colder</button>
+  <button on:click={() => changeFreezeRate(0.5)}>Make it warmer</button></div>
 </main>
 
 <style src="./app.css"></style>
