@@ -7,6 +7,7 @@ import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
 import Toilets from '../locations/teodororjansen/Toilets.svelte'
 import EmptyRoom from '../locations/NicolaiHindenes/EmptyRoom.svelte'
 import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
+import DarkHallway from '../locations/thomax/DarkHallway.svelte'
 
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
@@ -19,10 +20,16 @@ const locationsConfig = [
     component: FrozenClassroom
   },
   {
-    id: 'dh',
+    id: 'hall',
     title: 'Hallway',
     author: 'Henning',
     component: Hallway
+  },
+  {
+    id: 'dh',
+    title: 'Dark Hallway',
+    author: 'thomax',
+    component: DarkHallway
   },
   {
     id: 'so',
