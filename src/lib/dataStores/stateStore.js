@@ -21,24 +21,24 @@ if (get(gameState).status === 'gameRunning') {
 
 // Call this to trigger new status
 export function setGameStatus(newStatus) {
-  let updatedState = get(gameState)
-  updatedState.status = newStatus
+  const currentGameState = get(gameState)
+  currentGameState.status = newStatus
   if (newStatus === 'welcome') {
     stopTemperatureCountDown()
-    updatedState.beganAt = null
-    updatedState.endedAt = null    
+    currentGameState.beganAt = null
+    currentGameState.endedAt = null    
   }
   if (newStatus === 'gameRunning') {
     updateCharacter(null, true)
     startTemperatureCountDown()
-    updatedState.beganAt = new Date()
-    updatedState.endedAt = null
+    currentGameState.beganAt = new Date()
+    currentGameState.endedAt = null
   }
   if (newStatus === 'gameOver') {
     stopTemperatureCountDown()
-    updatedState.endedAt = new Date()
+    currentGameState.endedAt = new Date()
   }
-  updatedState = Object.assign({}, updatedState)
+  const updatedState = Object.assign({}, currentGameState)
   gameState.set(updatedState)
 }
 
