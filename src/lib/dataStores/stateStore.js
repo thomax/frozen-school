@@ -26,7 +26,7 @@ export function setGameStatus(newStatus) {
   if (newStatus === 'welcome') {
     stopTemperatureCountDown()
     currentGameState.beganAt = null
-    currentGameState.endedAt = null    
+    currentGameState.endedAt = null
   }
   if (newStatus === 'gameRunning') {
     updateCharacter(null, true)
