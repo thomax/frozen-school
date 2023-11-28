@@ -45,6 +45,7 @@
     <button on:click={() => handleChangeFreezeRate(0.5)}>- freezeRate</button>
   </div>
   <div>
+    <h2>Location: {localLocation}</h2>
     <h2>Game state</h2>
     <table>
       {#each Object.keys(localGameState) as key}
@@ -65,7 +66,6 @@
         </tr>
       {/each}
     </table>
-    <h2>Location: {localLocation}</h2>
   </div>
 </div>
 
