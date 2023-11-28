@@ -5,7 +5,7 @@ import StrangeOffice from '../locations/philiptorrissen/StrangeOffice.svelte'
 import Room404 from '../locations/thomax/Room404.svelte'
 import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
 import Toilets from '../locations/teodororjansen/Toilets.svelte'
-import EmptyRoom from '../locations/NicolaiHindenes/EmptyRoom.svelte'
+import LockerRoom from '../locations/NicolaiHindenes/LockerRoom.svelte'
 import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
 
@@ -38,10 +38,10 @@ const locationsConfig = [
     component: StrangeOffice
   },
   {
-    id: 'em',
-    title: 'Empty room',
+    id: 'lr',
+    title: 'LockerRoom',
     author: 'NicolaiHindenes',
-    componenet: EmptyRoom
+    componenet: LockerRoom
   },
   {
     id: 'toi',
