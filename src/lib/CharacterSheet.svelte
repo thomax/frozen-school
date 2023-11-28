@@ -1,13 +1,10 @@
 <script>
   import {character, changeTemperature, changeFreezeRate} from './dataStores/characterStore.js'
   import {setGameStatus} from './dataStores/stateStore.js'
-<<<<<<< Updated upstream
-
-=======
   import flameIcon from '../assets/NicolaiHindenes/flameIcon.png'
   import snowflakeIcon from '../assets/NicolaiHindenes/snowflakeIcon.png'
   import frozenEffect1 from '../assets/NicolaiHindenes/frozenEffect1.png'
->>>>>>> Stashed changes
+
   let localCharacter
   let icon = flameIcon
   let frozenEffect = frozenEffect1
@@ -44,23 +41,12 @@
 <div id="characterComponent">
   <h3>Character sheet</h3>
   <button on:click={() => handleChangeTemperature(15)}>increase</button>
-<<<<<<< Updated upstream
   <button on:click={() => handleChangeTemperature(-1)}>decrease</button>
   <button on:click={() => changeFreezeRate(2)}>Make it colder</button>
   <button on:click={() => changeFreezeRate(0.5)}>Make it warmer</button>
-  <div class="outer">
-    <div
-      class="inner"
-      style="width: {localCharacter.temperature}%; background-color: rgb({localCharacter.temperature *
-        2.55}, 0, {255 - localCharacter.temperature * 2.55});"
-    />
-  </div>
-=======
-  <button on:click={() => handleChangeTemperature(-15)}>decrease</button>
   <div class="outer">
     <div class="inner" style="background-color: rgb({localCharacter.temperature * 2.55}, 0, {255 - localCharacter.temperature * 2.55});">
       <img src="{icon}" alt="icon" width="100px">
     </div>
   </div> 
->>>>>>> Stashed changes
 </div>
