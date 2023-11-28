@@ -72,18 +72,17 @@ body {
 }
 
 .inner, .outer{
-  height: 40px;
+  height: 100px;
   border-radius: 10px;
 }
 
 .outer {
-  width: 80vw;
+  width: 100px;
   margin: 30px auto;
   background-color: transparent;
   border: 1px solid #222;
 }
 
 .inner {
-  background-color: blue;
   transition: width 0.5s ease;
 }
