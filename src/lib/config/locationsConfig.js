@@ -9,6 +9,7 @@ import LockerRoom from '../locations/NicolaiHindenes/LockerRoom.svelte'
 import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
 import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
+import Toilet1 from '../locations/teodororjansen/Toilet1.svelte'
 
 import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
@@ -50,6 +51,12 @@ const locationsConfig = [
     title: 'Toilets',
     author: 'teodororjansen',
     component: Toilets
+  },
+  {
+    id: 'toi1',
+    title: 'toilet1',
+    author: 'teodororjansen',
+    component: Toilet1
   },
   {
     id: '404',
