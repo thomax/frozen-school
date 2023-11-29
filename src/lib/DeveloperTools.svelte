@@ -58,7 +58,7 @@
     </table>
     <h2>Character</h2>
     <table>
-      {#each Object.keys(localCharacter) as key}
+      {#each Object.keys(localCharacter || {}) as key}
         <tr>
           <th>{key}</th>
           <td>{localCharacter[key]}</td>
