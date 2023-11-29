@@ -14,4 +14,5 @@
   <button on:click={() => goToLocation('toi')}>Toilets</button>
   <button on:click={() => goToLocation('caf')}>Cafeteria</button>
   <button on:click={() => goToLocation('hall')}>Navigation test</button>
+  <button on:click={() => goToLocation('lr')}>Locker room</button>
 </div>
