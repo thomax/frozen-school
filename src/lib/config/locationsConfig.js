@@ -8,7 +8,9 @@ import Toilets from '../locations/teodororjansen/Toilets.svelte'
 import LockerRoom from '../locations/NicolaiHindenes/LockerRoom.svelte'
 import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
+import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
 
+import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
 
@@ -71,6 +73,18 @@ const locationsConfig = [
     title: 'Cafeteria',
     author: 'shimarikuyo',
     component: Cafeteria
+  },
+  {
+    id: 'tl',
+    title: 'Bibliotek',
+    author: 'aakonHO-IN',
+    component: TaskLibrary,
+  },
+  {
+    id: 'norcl',
+    title: 'Classroom 3',
+    author: 'jonabarona',
+    component: Classroom3
   }
 ]
 
