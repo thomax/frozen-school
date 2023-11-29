@@ -10,6 +10,8 @@ import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
 import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
 import Toilet1 from '../locations/teodororjansen/Toilet1.svelte'
+import Kitchen from '../locations/ruimatsiur/Kitchen.svelte'
+import Fridge from '../locations/ruimatsiur/Fridge.svelte'
 
 import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
@@ -44,7 +46,7 @@ const locationsConfig = [
     id: 'lr',
     title: 'LockerRoom',
     author: 'NicolaiHindenes',
-    componenet: LockerRoom
+    component: LockerRoom
   },
   {
     id: 'toi',
@@ -92,6 +94,20 @@ const locationsConfig = [
     title: 'Classroom 3',
     author: 'jonabarona',
     component: Classroom3
+  },
+  {
+
+    id: 'ki',
+    title: 'Kitchen',
+    author: 'ruimatsiur',
+    component: Kitchen
+
+  },     
+  {
+    id: 'fi',
+    title: 'Fridge',
+    author: 'ruimatsiur',
+    component: Fridge
   }
 ]
 

@@ -9,7 +9,7 @@
 
     onMount(() => {
         mainElement.style.background = `url('${insideFridge}')  no-repeat center center`
-        mainElement.style.backgroundSize = 'cover'
+        mainElement.style.backgroundSize = 'contain'
     })
 
 </script>
