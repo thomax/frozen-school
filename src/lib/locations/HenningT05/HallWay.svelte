@@ -1,5 +1,8 @@
 <script>
+// @ts-nocheck
+
     import mapOfSchool from "../../../assets/HenningT/hallwaymapv1.png"
+    import PressE from "../../../assets/HenningT/PressEButton.png"
 
     let position = {x: 850, y: 390}
     let wallDectectorPosition = {x:70,y: 42.5}
@@ -15,6 +18,7 @@
     let rotationSpeed = 1.4
     let maxRotationSpeed = 2 
 
+    let pressE = false
 
     let windowHeight = null
     let windowWidth = null
@@ -33,7 +37,7 @@
     window.onresize = getViewportSize;
 
     function convertPercentToPixels(percent, screenSize) {
-      console.log(((percent / 100) * screenSize)/10, position.x)
+      //console.log(((percent / 100) * screenSize)/10, position.x)
       return (percent / 100) * screenSize;
     }
 
@@ -137,8 +141,7 @@
   
 
   function move(){
-    console.log('radian'+rotation)
-    //console.log(position)
+    console.log(position.y, 'door', convertPercentToPixels(48, windowHeight))
     if (isWDown == true){
       speed = speedUp()
       position = movePlayer(speed)
@@ -159,7 +162,12 @@
   }
 
   function checkCollisionDores(){
-    
+    if (position.x > convertPercentToPixels(35, windowWidth) && position.x < convertPercentToPixels(40, windowWidth) && position.y < convertPercentToPixels(38, windowHeight) && position.y > convertPercentToPixels(33, windowHeight)){
+      pressE = true
+    }
+    else{
+      pressE = false
+    }
   }
 
   function checkCollision() {
@@ -293,6 +301,13 @@
     background-color: darkblue;
   }
 
+  #PressEIMG{
+    position: relative;
+    width: 50px;
+    left: 120%;
+    top: -50px;
+  }
+
 </style>
 
 <div class="hallWayDiv" style="">
@@ -304,9 +319,15 @@
     <div id="wall4"></div>-->
     <div id="Player" style="left: {position.x}px; top: {position.y}px; transform: rotate({rotation}deg);">
       <div id="wallDectector" ></div>
+      {#if pressE}
+        <div id="pressEIcon">
+          <img id="PressEIMG" src="{PressE}" alt="Press E">
+        </div>
+      {/if}
+      
     </div>
 
-    <!--<div id="door1" style="left: {}"></div>
-    <div id="doorStepsDoor1"></div>-->
+    <div id="door1"></div>
+    <div id="doorStepsDoor1"></div>
 
 </div>
