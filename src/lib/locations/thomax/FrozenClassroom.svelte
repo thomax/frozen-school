@@ -6,7 +6,7 @@
   let mainElement
 
   onMount(() => {
-    mainElement.style.background = `url('${classroomImageSrc}')  no-repeat center center fixed`
+    mainElement.style.background = `url('${classroomImageSrc}')  no-repeat center center`
     mainElement.style.backgroundSize = 'cover'
   })
 </script>
