@@ -10,6 +10,7 @@ import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
 import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
 
+import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
 
@@ -79,6 +80,12 @@ const locationsConfig = [
     author: 'aakonHO-IN',
     component: TaskLibrary,
   },
+  {
+    id: 'norcl',
+    title: 'Classroom 3',
+    author: 'jonabarona',
+    component: Classroom3
+  }
 ]
 
 export function getLocationConfig(id) {
