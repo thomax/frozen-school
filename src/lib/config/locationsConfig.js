@@ -83,7 +83,7 @@ const locationsConfig = [
   },
   {
     id: 'tl',
-    title: 'Bibliotek',
+    title: 'Task to Library',
     author: 'aakonHO-IN',
     component: TaskLibrary,
   },
