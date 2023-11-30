@@ -1,8 +1,13 @@
 <script>
 // @ts-nocheck
 
-    import mapOfSchool from "../../../assets/HenningT/hallwaymapv1.png"
+    import mapOfSchool from "../../../assets/HenningT/MapHallway.png"
     import PressE from "../../../assets/HenningT/PressEButton.png"
+    import Player from "../../../assets/HenningT/Player.png"
+
+    import Classroom3 from '../../locations/jonabarona/Classroom3.svelte'
+
+    import {goToLocation} from '../../dataStores/locationStore.js'
 
     let position = {x: 850, y: 390}
     let wallDectectorPosition = {x:70,y: 42.5}
@@ -11,12 +16,12 @@
 
     let positionWall1 = {x: 100, y: 100}
 
-    let startSpeed = 4
+    let startSpeed = 0
     let speed = startSpeed
     let maxSpeed = 10
 
-    let rotationSpeed = 1.4
-    let maxRotationSpeed = 2 
+    let rotationSpeed = 2.5
+    let maxRotationSpeed = 4
 
     let pressE = false
 
@@ -48,6 +53,7 @@
       else if (rotation < 0){
         rotation = 359
       }
+      checkCollision()
     }
 
     function movePlayer(speed){
@@ -74,14 +80,14 @@
 
     function speedUp(){
       if (speed < maxSpeed){
-        speed = speed + 0.2
+        speed = speed + 0.5
       }
       return speed
     }
 
     function rotateUp(){
       if (rotationSpeed < maxRotationSpeed){
-        rotationSpeed = rotationSpeed * 1.05
+        rotationSpeed = rotationSpeed * 1.3
       }
       return rotationSpeed
     }
@@ -92,6 +98,7 @@
     let isADown = false;
     let isSDown = false;
     let isDDown = false;
+    let isEDown = false;
 
     onMount(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -105,10 +112,15 @@
         isSDown = true;
       }
       else if (event.key === 'a'){
+        rotation = rotation - rotateUp()
         isADown = true;
       }
       else if (event.key === 'd'){
+        rotation = rotation + rotateUp()
         isDDown = true;
+      }
+      else if (event.key === 'e'){
+        isEDown = true;
       }
       move()
     }
@@ -134,6 +146,9 @@
         isWDown = false;
         speed = startSpeed
       } 
+      else if (event.key === 'e') {
+        isEDown = false;
+      } 
     }
   });
   
@@ -141,7 +156,6 @@
   
 
   function move(){
-    console.log(position.y, 'door', convertPercentToPixels(48, windowHeight))
     if (isWDown == true){
       speed = speedUp()
       position = movePlayer(speed)
@@ -150,20 +164,17 @@
       speed = speedUp()
       position = movePlayer(-(speed/2))
     }
-    if (isADown == true){
-      rotation = rotation - rotateUp()
-      checkRotation()
-    }
-    if (isDDown == true){
-      rotation = rotation + rotateUp()
-      checkRotation()
-    }
-    checkCollision()
+    checkRotation()
+    
   }
 
   function checkCollisionDores(){
-    if (position.x > convertPercentToPixels(35, windowWidth) && position.x < convertPercentToPixels(40, windowWidth) && position.y < convertPercentToPixels(38, windowHeight) && position.y > convertPercentToPixels(33, windowHeight)){
+    if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y < convertPercentToPixels(30, windowHeight) && position.y > convertPercentToPixels(34, windowHeight)){
       pressE = true
+      console.log("knapp")
+      if (isEDown){
+        goToLocation('norcl')
+      }
     }
     else{
       pressE = false
@@ -193,22 +204,22 @@
     }
 
     //Topp 
-    if (position.y < convertPercentToPixels(16, windowHeight)){
+    if (position.y < convertPercentToPixels(30, windowHeight)){
       if (rotation > 180 && rotation <= 359){
-        speed = -(speed/1.5)
+        position.y = convertPercentToPixels(30, windowHeight)
       }
       else if (isSDown == true){
-        position.y = convertPercentToPixels(16, windowHeight)
+        position.y = convertPercentToPixels(30, windowHeight)
       }
     }
 
     //Buttom
-    if (position.y > convertPercentToPixels(72, windowHeight)){
+    if (position.y > convertPercentToPixels(59, windowHeight)){
       if (rotation < 180 && rotation >= 0){
-        speed = -(speed/1.5)
+        position.y = convertPercentToPixels(59, windowHeight)
       }
       else if (isSDown == true){
-        position.y = convertPercentToPixels(72, windowHeight)
+        position.y = convertPercentToPixels(59, windowHeight)
       }
     }
     checkCollisionDores()
@@ -228,7 +239,7 @@
   #background{
     position: fixed;
     left: 20%;
-    top: 16%;
+    top: 10%;
     width: 60%;
     background-color: black;
   }
@@ -273,6 +284,12 @@
     height: 20px;
     background-color: blue;
   }
+  #PlayerSkin{
+    left: -20px;
+    top: -20px;
+    width: 50px;
+    position: fixed;
+  }
   #wallDectector{
     position: absolute;
     left: 20px;
@@ -285,27 +302,28 @@
 
   #door1{
     position: fixed;
-    width: 5%;
+    width: 4%;
     height: 0.5%;
-    left: 35%;
-    top: 33.5%;
+    left: 26.5%;
+    top: 30%;
     background-color: blueviolet;
   }
 
   #doorStepsDoor1{
     position: fixed;
-    width: 5%;
+    width: 4%;
     height: 5%;
-    left: 35%;
-    top: 34%;
+    left: 26.5%;
+    top: 30.5%;
     background-color: darkblue;
   }
 
   #PressEIMG{
     position: relative;
     width: 50px;
-    left: 120%;
-    top: -50px;
+    left: 50px;
+    top: 50px;
+    transform: rotate(90deg)
   }
 
 </style>
@@ -318,14 +336,15 @@
     <!--<div id="wall3"></div>
     <div id="wall4"></div>-->
     <div id="Player" style="left: {position.x}px; top: {position.y}px; transform: rotate({rotation}deg);">
+      <img id="PlayerSkin" src="{Player}" alt="">
       <div id="wallDectector" ></div>
       {#if pressE}
         <div id="pressEIcon">
-          <img id="PressEIMG" src="{PressE}" alt="Press E">
+          <img id="PressEIMG" src="{PressE}" alt="Press E" style="rotate: {-rotation-90}deg;">
         </div>
       {/if}
-      
     </div>
+    
 
     <div id="door1"></div>
     <div id="doorStepsDoor1"></div>
