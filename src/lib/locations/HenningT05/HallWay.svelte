@@ -1,6 +1,28 @@
 <script>
 // @ts-nocheck
 
+  let windowHeight = null
+  let windowWidth = null
+      
+  function getViewportSize() {
+    windowWidth = window.innerWidth;
+    windowHeight = window.innerHeight;
+    console.log('Bredde: ' + windowWidth + 'px, Høyde: ' + windowHeight + 'px');
+  }
+ 
+
+  // Oppdaterer størrelsen hvis vinduet endres
+  window.onresize = getViewportSize;
+
+
+  // Henter størrelsen når siden lastes
+  getViewportSize();
+
+  function convertPercentToPixels(percent, screenSize) {
+    //console.log(((percent / 100) * screenSize)/10, position.x)
+    return (percent / 100) * screenSize;
+  }
+
     import mapOfSchool from "../../../assets/HenningT/MapHallway.png"
     import PressE from "../../../assets/HenningT/PressEButton.png"
     import Player from "../../../assets/HenningT/Player.png"
@@ -9,7 +31,8 @@
 
     import {goToLocation} from '../../dataStores/locationStore.js'
 
-    let position = {x: 850, y: 390}
+    let startPosition = {x: 50, y: 350} //in %
+    let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: startPosition.y, windowHeight}//x:850, y:390
     let wallDectectorPosition = {x:70,y: 42.5}
     let rotation = 0  
     let radian = null
@@ -25,26 +48,10 @@
 
     let pressE = false
 
-    let windowHeight = null
-    let windowWidth = null
+    
 
-    function getViewportSize() {
-      windowWidth = window.innerWidth;
-      windowHeight = window.innerHeight;
-      console.log('Bredde: ' + windowWidth + 'px, Høyde: ' + windowHeight + 'px');
-    }
+    
 
-
-    // Henter størrelsen når siden lastes
-    getViewportSize();
-
-    // Oppdaterer størrelsen hvis vinduet endres
-    window.onresize = getViewportSize;
-
-    function convertPercentToPixels(percent, screenSize) {
-      //console.log(((percent / 100) * screenSize)/10, position.x)
-      return (percent / 100) * screenSize;
-    }
 
     function checkRotation(){
       if (rotation > 360){
