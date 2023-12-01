@@ -12,6 +12,11 @@ import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
 import Toilet1 from '../locations/teodororjansen/Toilet1.svelte'
 import Kitchen from '../locations/ruimatsiur/Kitchen.svelte'
 import Fridge from '../locations/ruimatsiur/Fridge.svelte'
+<<<<<<< Updated upstream
+=======
+import sinkRoom from '../locations/teodororjansen/sinkRoom.svelte'
+
+>>>>>>> Stashed changes
 import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
@@ -58,6 +63,12 @@ const locationsConfig = [
     title: 'toilet1',
     author: 'teodororjansen',
     component: Toilet1
+  },
+  {
+    id: 'sink',
+    title: 'sinkRoom',
+    author: 'teodororjansen',
+    component: sinkRoom
   },
   {
     id: '404',
