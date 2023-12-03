@@ -97,6 +97,7 @@
 
 <style>
   #devToolsComponent {
+    font-family: Helvetica, Arial, system-ui, sans-serif;
     margin-top: 15px;
     border: 2px solid blue;
   }
