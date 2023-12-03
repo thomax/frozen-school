@@ -37,8 +37,8 @@
 <div id="devToolsComponent">
   <h3>Developer Tools</h3>
   <div>
-    <button on:click={() => handleChangeTemperature(15)}>+ character temp</button>
-    <button on:click={() => handleChangeTemperature(-1)}>- character temp</button>
+    <button on:click={() => handleChangeTemperature(10)}>+ character temp</button>
+    <button on:click={() => handleChangeTemperature(-10)}>- character temp</button>
   </div>
   <div>
     <button on:click={() => handleChangeFreezeRate(2)}>+ freezeRate</button>

@@ -2,7 +2,7 @@
 import {get, writable} from 'svelte/store'
 import {gameState} from './stateStore'
 
-const defaultCharacter = {temperature: 100, health: 15, inventory: []}
+const defaultCharacter = {temperature: 100, health: 100, inventory: []}
 let countdownInterval
 let localFreezeRate
 
