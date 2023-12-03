@@ -30,7 +30,6 @@
 </script>
 
 <div id="characterComponent">
-  <h3>Character sheet</h3>
   <ValueIndicator
     value={localCharacter.temperature}
     options={{color: 'blue', label: 'Kroppstemperatur'}}

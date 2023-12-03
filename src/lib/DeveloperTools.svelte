@@ -79,6 +79,7 @@
 
 <style>
   #devToolsComponent {
+    margin-top: 15px;
     border: 2px solid blue;
   }
 

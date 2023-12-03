@@ -3,7 +3,7 @@
   import {getGameDuration} from './dataStores/stateStore.js'
 </script>
 
-<div id="gameOverComponent" class="uiBox">
+<div id="gameOverComponent" class="gameStateBox">
   <h1>Game over!</h1>
   <div>
     You died with temperature {Math.floor($character.temperature)} and health {$character.health} 🥶
