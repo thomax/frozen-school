@@ -1,10 +1,7 @@
 // @ts-nocheck
 import {get, writable} from 'svelte/store'
-import {gameState} from './stateStore'
 
 const defaultCharacter = {temperature: 100, health: 100, inventory: []}
-let countdownInterval
-let localFreezeRate
 
 // On first load, get stored character from local storage
 const localStorageCharacter = localStorage.character ? JSON.parse(localStorage.character) : null
@@ -36,32 +33,9 @@ export function changeHealth(fixedAmount) {
   character.set(updatedCharacter)
 }
 
-// Count down temperature with freezeRate per 1000 ms
-export function startTemperatureCountDown() {
-  if (!countdownInterval) {
-    countdownInterval = setInterval(() => {
-      const {temperature} = get(character)
-      const charUpdate = {temperature: temperature - localFreezeRate}
-      updateCharacter(charUpdate)
-    }, 1000)
-  }
-}
-
-// Stop countdown
-export function stopTemperatureCountDown() {
-  if (countdownInterval) {
-    clearInterval(countdownInterval)
-    countdownInterval = null
-  }
-}
 
 // Whenever character changes, write it to localStorage
 character.subscribe((updatedCharacter) => {
   localStorage.character = JSON.stringify(updatedCharacter)
-})
-
-// Track any change in freeze rate, because we need it for temperature countdown
-gameState.subscribe((updatedGameState) => {
-  localFreezeRate = updatedGameState.freezeRate
 })
 

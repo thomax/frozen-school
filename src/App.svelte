@@ -3,15 +3,9 @@
   import Game from './lib/Game.svelte'
   import GameOver from './lib/GameOver.svelte'
   import DeveloperTools from './lib/DeveloperTools.svelte'
-  import {gameState, setGameStatus} from './lib/dataStores/stateStore.js'
-  import {goToLocation} from './lib/dataStores/locationStore'
+  import {gameState} from './lib/dataStores/stateStore.js'
 
-  let currentGameStatus = $gameState.status
-
-  // Handle update of game state
-  function handleStatusChange(newStatus) {
-    setGameStatus(newStatus)
-  }
+  let currentGameStatus
 
   // Listen to changes on location
   gameState.subscribe((newGameState) => {
@@ -21,14 +15,10 @@
 
 <main>
   {#if currentGameStatus === 'welcome'}
-    <button on:click={() => handleStatusChange('gameRunning')}>Play now!</button>
     <Welcome />
   {:else if currentGameStatus === 'gameRunning'}
-    <button on:click={() => handleStatusChange('welcome')}>Go to Welcome Page</button>
-    <button on:click={() => handleStatusChange('gameOver')}>Go to Game Over Page</button>
     <Game />
   {:else if currentGameStatus === 'gameOver'}
-    <button on:click={() => handleStatusChange('gameRunning')}>Play again!</button>
     <GameOver />
   {:else}
     <div>Alas, {currentGameStatus} is an unknown game state :/</div>

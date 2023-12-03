@@ -1,10 +1,14 @@
 // @ts-nocheck
 import {get, writable} from 'svelte/store'
-import { startTemperatureCountDown, stopTemperatureCountDown, updateCharacter } from './characterStore.js'
+import { character, updateCharacter } from './characterStore.js'
 import { goToLocation } from './locationStore.js'
 
 const defaultFreezeRate = 1
 const defaultStartLocation = 'fc307'
+let countdownInterval
+let localFreezeRate
+let localCharacter
+
 
 const defaultGameState =  {
   status: "welcome",
@@ -33,7 +37,7 @@ export function setGameStatus(newStatus) {
     currentGameState.endedAt = null
   }
   if (newStatus === 'gameRunning') {
-    updateCharacter(null, true)
+    updateCharacter(null)
     currentGameState.freezeRate = defaultFreezeRate
     currentGameState.beganAt = new Date()
     currentGameState.endedAt = null
@@ -62,8 +66,31 @@ export function changeFreezeRate(multiplier) {
   gameState.set(updatedState)
 }
 
+// Count down temperature with freezeRate per 1000 ms
+function startTemperatureCountDown() {
+  if (!countdownInterval) {
+    countdownInterval = setInterval(() => {
+      const charUpdate = {temperature: localCharacter.temperature - localFreezeRate}
+      updateCharacter(charUpdate)
+    }, 1000)
+  }
+}
+
+// Stop countdown
+function stopTemperatureCountDown() {
+  if (countdownInterval) {
+    clearInterval(countdownInterval)
+    countdownInterval = null
+  }
+}
+
+// React to changes in character
+character.subscribe((updatedCharacter) => {
+  localCharacter = updatedCharacter
+})
 
 // Whenever gameState changes, write it to localStorage
-gameState.subscribe((value) => {
-  localStorage.gameState = JSON.stringify(value)
+gameState.subscribe((updatedGameState) => {
+  localFreezeRate = updatedGameState.freezeRate
+  localStorage.gameState = JSON.stringify(updatedGameState)
 })
