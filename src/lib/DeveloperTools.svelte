@@ -1,5 +1,5 @@
 <script>
-  import {character, changeTemperature} from './dataStores/characterStore.js'
+  import {character, changeTemperature, changeHealth} from './dataStores/characterStore.js'
   import {currentLocation} from './dataStores/locationStore.js'
   import {gameState, changeFreezeRate} from './dataStores/stateStore.js'
 
@@ -10,6 +10,10 @@
 
   function handleChangeTemperature(amount) {
     changeTemperature(amount)
+  }
+
+  function handleChangeHealth(amount) {
+    changeHealth(amount)
   }
 
   function handleChangeFreezeRate(multiplier) {
@@ -39,6 +43,10 @@
   <div>
     <button on:click={() => handleChangeTemperature(10)}>+ character temp</button>
     <button on:click={() => handleChangeTemperature(-10)}>- character temp</button>
+  </div>
+  <div>
+    <button on:click={() => handleChangeHealth(10)}>+ character health</button>
+    <button on:click={() => handleChangeHealth(-10)}>- character health</button>
   </div>
   <div>
     <button on:click={() => handleChangeFreezeRate(2)}>+ freezeRate</button>

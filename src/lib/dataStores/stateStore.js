@@ -1,8 +1,10 @@
 // @ts-nocheck
 import {get, writable} from 'svelte/store'
 import { startTemperatureCountDown, stopTemperatureCountDown, updateCharacter } from './characterStore.js'
+import { goToLocation } from './locationStore.js'
 
 const defaultFreezeRate = 1
+const defaultStartLocation = 'fc307'
 
 const defaultGameState =  {
   status: "welcome",
@@ -36,6 +38,7 @@ export function setGameStatus(newStatus) {
     currentGameState.beganAt = new Date()
     currentGameState.endedAt = null
     startTemperatureCountDown()
+    goToLocation(defaultStartLocation)
   }
   if (newStatus === 'gameOver') {
     currentGameState.endedAt = new Date()

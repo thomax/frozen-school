@@ -6,15 +6,11 @@
   import {gameState, setGameStatus} from './lib/dataStores/stateStore.js'
   import {goToLocation} from './lib/dataStores/locationStore'
 
-  const startLocation = 'fc307'
   let currentGameStatus = $gameState.status
 
   // Handle update of game state
-  function handleStatusChange(nextStatus) {
-    if (nextStatus === 'gameRunning') {
-      goToLocation(startLocation)
-    }
-    setGameStatus(nextStatus)
+  function handleStatusChange(newStatus) {
+    setGameStatus(newStatus)
   }
 
   // Listen to changes on location

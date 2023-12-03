@@ -47,3 +47,26 @@
     </div>
   </div>
 </div>
+
+<style>
+  .inner,
+  .outer {
+    margin-bottom: 20px;
+  }
+
+  .outer {
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+    background-color: transparent;
+    border: 3px solid #222;
+    border-radius: 100%;
+  }
+
+  .inner {
+    transition: width 0.5s ease;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+  }
+</style>

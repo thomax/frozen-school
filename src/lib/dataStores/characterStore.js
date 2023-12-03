@@ -30,6 +30,12 @@ export function changeTemperature(fixedAmount) {
   character.set(updatedCharacter)
 }
 
+export function changeHealth(fixedAmount) {
+  const currentCharacter = get(character)
+  const updatedCharacter = Object.assign(currentCharacter, {health: currentCharacter.health + fixedAmount})
+  character.set(updatedCharacter)
+}
+
 // Count down temperature with freezeRate per 1000 ms
 export function startTemperatureCountDown() {
   if (!countdownInterval) {
@@ -54,7 +60,7 @@ character.subscribe((updatedCharacter) => {
   localStorage.character = JSON.stringify(updatedCharacter)
 })
 
-// Listen for changes in game state
+// Track any change in freeze rate, because we need it for temperature countdown
 gameState.subscribe((updatedGameState) => {
   localFreezeRate = updatedGameState.freezeRate
 })
