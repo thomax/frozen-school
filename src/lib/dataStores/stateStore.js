@@ -23,7 +23,6 @@ export const gameState = writable(localStorageGameState)
 
 // If we're in the middle of a game, ensure countdown is running
 if (get(gameState).status === 'gameRunning') {
-  // use timeout to give characterStore time to initialize local vars
   startTemperatureCountDown()
 }
 

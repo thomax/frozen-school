@@ -72,7 +72,7 @@
   </div>
   <div>
     <h2>Location: {localLocation}</h2>
-    <h2>Game state</h2>
+    <h2>Game data</h2>
     <table>
       {#each Object.keys(localGameState) as key}
         <tr>
@@ -82,7 +82,7 @@
         </tr>
       {/each}
     </table>
-    <h2>Character</h2>
+    <h2>Character data</h2>
     <table>
       {#each Object.keys(localCharacter || {}) as key}
         <tr>
