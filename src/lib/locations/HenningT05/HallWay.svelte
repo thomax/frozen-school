@@ -23,6 +23,10 @@
     return (percent / 100) * screenSize;
   }
 
+  function ConvertPixelsToPercent(percentage, screenSize) {
+    return (percentage / 100) * screenSize; // Regner ut høyden av objektet basert på prosentandelen
+  }
+
     import mapOfSchool from "../../../assets/HenningT/MapHallway.png"
     import PressE from "../../../assets/HenningT/PressEButton.png"
     import Player from "../../../assets/HenningT/Player.png"
@@ -31,8 +35,8 @@
 
     import {goToLocation} from '../../dataStores/locationStore.js'
 
-    let startPosition = {x: 50, y: 45} //in %
-    let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: convertPercentToPixels(startPosition.y, windowHeight)}//x:850, y:390
+    let startPosition = {x: 50, y: 55} //in %
+    let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: convertPercentToPixels(startPosition.y, ConvertPixelsToPercent(69+10, windowHeight))}//x:850, y:390
     let wallDectectorPosition = {x:70,y: 42.5}
     let rotation = 0  
     let radian = null
@@ -244,7 +248,7 @@
     position: fixed;
     left: 20%;
     top: 10%;
-    width: 60%;
+    height: 69%;
     background-color: black;
   }
 
