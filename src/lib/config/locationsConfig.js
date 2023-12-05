@@ -102,12 +102,12 @@ const locationsConfig = [
     component: Classroom3
   },
   {
-
+    
     id: 'ki',
     title: 'Kitchen',
     author: 'ruimatsiur',
     component: Kitchen
-
+    
   },     
   {
     id: 'fi',
