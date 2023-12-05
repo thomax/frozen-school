@@ -39,9 +39,9 @@ const locationsConfig = [
   },
   {
     id: 'lr',
-    title: 'LockerRoom',
+    title: 'Locker Room',
     author: 'NicolaiHindenes',
-    componenet: LockerRoom
+    component: LockerRoom
   },
   {
     id: 'toi',
