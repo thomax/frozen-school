@@ -5,10 +5,7 @@
   import ValueIndicator from './ValueIndicator.svelte'
   import snowflakeIcon from '../assets/NicolaiHindenes/snowflakeIcon.png'
   import frozenEffect1 from '../assets/NicolaiHindenes/frozenEffect1.png'
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
   let localCharacter
   let icon = flameIcon
 
