@@ -2,34 +2,40 @@
   import {character} from './dataStores/characterStore.js'
   import {setGameStatus} from './dataStores/stateStore.js'
   import flameIcon from '../assets/NicolaiHindenes/flameIcon.png'
+  import ValueIndicator from './ValueIndicator.svelte'
   import snowflakeIcon from '../assets/NicolaiHindenes/snowflakeIcon.png'
   import frozenEffect1 from '../assets/NicolaiHindenes/frozenEffect1.png'
+
   let localCharacter
   let icon = flameIcon
-  let frozenEffect = frozenEffect1
 
   // Listen for changes to character
   character.subscribe((updatedCharacter) => {
     localCharacter = updatedCharacter
-    if (updatedCharacter.temperature <= 0) {
+    const {temperature, health} = localCharacter
+    if (temperature <= 0) {
       // End game if death by freezing
       setGameStatus('gameOver')
     }
-    if (updatedCharacter.health <= 0) {
+    if (health <= 0) {
       // End game if death by damage
       setGameStatus('gameOver')
     }
-    if (localCharacter.temperature > 50) {
+    if (temperature > 50) {
       icon = flameIcon
     }
-    if (localCharacter.temperature < 50) {
+    if (temperature < 50) {
       icon = snowflakeIcon
     }
   })
 </script>
 
 <div id="characterComponent">
-  <h3>Character sheet</h3>
+  <ValueIndicator
+    value={localCharacter.temperature}
+    options={{color: 'blue', label: 'Kroppstemperatur'}}
+  />
+  <ValueIndicator value={localCharacter.health} options={{color: 'red', label: 'Helse'}} />
 
   <div class="outer">
     <div
@@ -41,3 +47,26 @@
     </div>
   </div>
 </div>
+
+<style>
+  .inner,
+  .outer {
+    margin-bottom: 20px;
+  }
+
+  .outer {
+    width: 100px;
+    height: 100px;
+    margin: 30px auto;
+    background-color: transparent;
+    border: 3px solid #222;
+    border-radius: 100%;
+  }
+
+  .inner {
+    transition: width 0.5s ease;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+  }
+</style>

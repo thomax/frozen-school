@@ -11,9 +11,8 @@
   })
 </script>
 
-<div id="gameComponent" class="uiBox">
+<div id="gameComponent" class="gameStateBox">
   <CharacterSheet />
   <svelte:component this={location.component} {location} />
   <div class="locationCreator">Location created by: {location.author}</div>
 </div>
-

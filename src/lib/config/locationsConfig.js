@@ -8,7 +8,12 @@ import Toilets from '../locations/teodororjansen/Toilets.svelte'
 import LockerRoom from '../locations/NicolaiHindenes/LockerRoom.svelte'
 import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
-
+import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
+import Toilet1 from '../locations/teodororjansen/Toilet1.svelte'
+import Kitchen from '../locations/ruimatsiur/Kitchen.svelte'
+import Fridge from '../locations/ruimatsiur/Fridge.svelte'
+import sinkRoom from '../locations/teodororjansen/sinkRoom.svelte'
+import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 const roomNotFoundId = '404'
 
@@ -50,6 +55,18 @@ const locationsConfig = [
     component: Toilets
   },
   {
+    id: 'toi1',
+    title: 'toilet1',
+    author: 'teodororjansen',
+    component: Toilet1
+  },
+  {
+    id: 'sink',
+    title: 'sinkRoom',
+    author: 'teodororjansen',
+    component: sinkRoom
+  },
+  {
     id: '404',
     title: 'A room named 404',
     component: Room404
@@ -71,6 +88,32 @@ const locationsConfig = [
     title: 'Cafeteria',
     author: 'shimarikuyo',
     component: Cafeteria
+  },
+  {
+    id: 'tl',
+    title: 'Task to Library',
+    author: 'aakonHO-IN',
+    component: TaskLibrary,
+  },
+  {
+    id: 'norcl',
+    title: 'Classroom 3',
+    author: 'jonabarona',
+    component: Classroom3
+  },
+  {
+
+    id: 'ki',
+    title: 'Kitchen',
+    author: 'ruimatsiur',
+    component: Kitchen
+
+  },     
+  {
+    id: 'fi',
+    title: 'Fridge',
+    author: 'ruimatsiur',
+    component: Fridge
   }
 ]
 

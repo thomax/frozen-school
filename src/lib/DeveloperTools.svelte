@@ -1,15 +1,24 @@
 <script>
-  import {character, changeTemperature} from './dataStores/characterStore.js'
+  import {character, changeTemperature, changeHealth} from './dataStores/characterStore.js'
   import {currentLocation} from './dataStores/locationStore.js'
-  import {gameState, changeFreezeRate} from './dataStores/stateStore.js'
+  import {gameState, changeFreezeRate, setGameStatus} from './dataStores/stateStore.js'
 
   let localGameState
   let localCharacter
   let localLocation
   let localFreezeRate = 1
 
+  // Handle update of game state
+  function handleStatusChange(newStatus) {
+    setGameStatus(newStatus)
+  }
+
   function handleChangeTemperature(amount) {
     changeTemperature(amount)
+  }
+
+  function handleChangeHealth(amount) {
+    changeHealth(amount)
   }
 
   function handleChangeFreezeRate(multiplier) {
@@ -36,9 +45,26 @@
 
 <div id="devToolsComponent">
   <h3>Developer Tools</h3>
+  {#if localGameState.status === 'welcome'}
+    <button on:click={() => handleStatusChange('gameRunning')}>Play now!</button>
+  {:else if localGameState.status === 'gameRunning'}
+    <button on:click={() => handleStatusChange('welcome')}>Go to Welcome Page</button>
+    <button on:click={() => handleStatusChange('gameOver')}>Go to Game Over Page</button>
+  {:else if localGameState.status === 'gameOver'}
+    <button on:click={() => handleStatusChange('gameRunning')}>Play again!</button>
+  {:else}
+    <div>{localGameState.status} is an unknown game state</div>
+  {/if}
+
+  <hr />
+
   <div>
-    <button on:click={() => handleChangeTemperature(15)}>+ character temp</button>
-    <button on:click={() => handleChangeTemperature(-1)}>- character temp</button>
+    <button on:click={() => handleChangeTemperature(10)}>+ character temp</button>
+    <button on:click={() => handleChangeTemperature(-10)}>- character temp</button>
+  </div>
+  <div>
+    <button on:click={() => handleChangeHealth(10)}>+ character health</button>
+    <button on:click={() => handleChangeHealth(-10)}>- character health</button>
   </div>
   <div>
     <button on:click={() => handleChangeFreezeRate(2)}>+ freezeRate</button>
@@ -46,7 +72,7 @@
   </div>
   <div>
     <h2>Location: {localLocation}</h2>
-    <h2>Game state</h2>
+    <h2>Game data</h2>
     <table>
       {#each Object.keys(localGameState) as key}
         <tr>
@@ -56,9 +82,9 @@
         </tr>
       {/each}
     </table>
-    <h2>Character</h2>
+    <h2>Character data</h2>
     <table>
-      {#each Object.keys(localCharacter) as key}
+      {#each Object.keys(localCharacter || {}) as key}
         <tr>
           <th>{key}</th>
           <td>{localCharacter[key]}</td>
@@ -71,6 +97,8 @@
 
 <style>
   #devToolsComponent {
+    font-family: Helvetica, Arial, system-ui, sans-serif;
+    margin-top: 15px;
     border: 2px solid blue;
   }
 
