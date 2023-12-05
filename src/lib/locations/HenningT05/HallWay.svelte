@@ -31,8 +31,8 @@
 
     import {goToLocation} from '../../dataStores/locationStore.js'
 
-    let startPosition = {x: 50, y: 350} //in %
-    let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: startPosition.y, windowHeight}//x:850, y:390
+    let startPosition = {x: 50, y: 45} //in %
+    let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: convertPercentToPixels(startPosition.y, windowHeight)}//x:850, y:390
     let wallDectectorPosition = {x:70,y: 42.5}
     let rotation = 0  
     let radian = null
@@ -47,10 +47,6 @@
     let maxRotationSpeed = 4
 
     let pressE = false
-
-    
-
-    
 
 
     function checkRotation(){
@@ -231,6 +227,7 @@
     }
     checkCollisionDores()
   }
+
   </script>
 
 <style>
