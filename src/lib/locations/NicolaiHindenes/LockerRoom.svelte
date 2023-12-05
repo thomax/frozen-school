@@ -51,15 +51,8 @@
   let ArenaWidth = 400, 
       ArenaHeight = 400
 
-  function onDragMove(event, { x, y, dx, dy }) {
-    DraggableX = x + dx;
-    DraggableY = y + dy;
-  }
-
-  function onDragEnd(event, { x, y, dx, dy }) {
-    DraggableX = x + dx;
-    DraggableY = y + dy;
-  }
+  function onDragMove (x,y, dx,dy) { DraggableX = x; DraggableY = y }
+  function onDragEnd  (x,y, dx,dy) { DraggableX = x; DraggableY = y }
   
   onMount(() => {
     mainElement.style.background = `url('${LockerRoom}')  no-repeat center center`
@@ -87,12 +80,12 @@
         class="sockImage" 
         draggable="true" 
         use:asDraggable={{
-            minX: 0,
-            minY: 0,
-            maxX: ArenaWidth - DraggableWidth,
-            maxY: ArenaHeight - DraggableHeight,
-            onDragMove,
-            onDragEnd,
+          minX: 0,
+          minY: 0,
+          maxX: ArenaWidth - DraggableWidth,
+          maxY: ArenaHeight - DraggableHeight,
+          onDragMove: (x, y, dx, dy) => onDragMove(x, y, dx, dy),
+          onDragEnd: (x, y, dx, dy) => onDragEnd(x, y, dx, dy),
         }}/>
       {/each}
       <div class="dropZone" on:drop={handleDrop} on:dragover={allowDrop}></div>
