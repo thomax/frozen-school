@@ -33,6 +33,32 @@ export function changeHealth(fixedAmount) {
   character.set(updatedCharacter)
 }
 
+export function addToInventory(item) {
+  const currentCharacter = get(character)
+  const {inventory} = currentCharacter
+  const itemToAdd = item.trim().toLowerCase()
+  if (inventory.includes(itemToAdd)) {
+    return false
+  }
+  inventory.push(itemToAdd)
+  const updatedCharacter = Object.assign(currentCharacter, {inventory})
+  character.set(updatedCharacter)
+  return true
+}
+
+export function removeFromInventory(item) {
+  const currentCharacter = get(character)
+  let {inventory} = currentCharacter
+  const itemToRemove = item.trim().toLowerCase()
+  if (inventory.includes(itemToRemove)) {
+    inventory = inventory.filter(item => item !== itemToRemove)
+    const updatedCharacter = Object.assign(currentCharacter, {inventory})
+    character.set(updatedCharacter)
+    return true
+  }
+  return false
+}
+
 
 // Whenever character changes, write it to localStorage
 character.subscribe((updatedCharacter) => {
