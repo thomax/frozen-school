@@ -2,20 +2,38 @@
   import {onMount} from 'svelte'
   import {goToLocation} from '../../dataStores/locationStore.js'
   export let location
-  import LockerImageSrc from '../../../assets/jscode1003/LockerWithFire.jpg'
+  import DefaultLocker from '../../../assets/jscode1003/LockerWithoutFire.png'
+  import LockerWithFire from '../../../assets/jscode1003/WithFire.png'
+  import Button from '../../../assets/jscode1003/button.jpg'
   let mainElement
 
 
   onMount(() => {
-    mainElement.style.background = `url('${LockerImageSrc}')  no-repeat center center`
+    mainElement.style.background = `url('${DefaultLocker}')  no-repeat center center`
     mainElement.style.backgroundSize = 'cover'
   })
 </script>
-np
-<div>
+
+<div class="img" bind:this={mainElement}>
   <h1>{location.title}</h1>
   <div>Locker with fireplace</div>
- 
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
+  <img class=button src="{Button}" alt="fireplace" on:click= {() => goToLocation('fire')}>
 </div>
+
+<style>
+  .img {
+    height: 100vh;
+    width: 80vw;
+    position: relative;
+    margin: auto;
+  }
+
+  .button {
+    width: 150px;
+    position: absolute; 
+    top: 65%; 
+    left: 45%;
+  }
+</style>
 

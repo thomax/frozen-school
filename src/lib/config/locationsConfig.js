@@ -102,19 +102,24 @@ const locationsConfig = [
     component: Classroom3
   },
   {
-    
+
     id: 'ki',
     title: 'Kitchen',
     author: 'ruimatsiur',
     component: Kitchen
-    
-  },     
+
+  },
   {
     id: 'fi',
     title: 'Fridge',
     author: 'ruimatsiur',
     component: Fridge
+    id: 'fire',
+    title: 'Fire',
+    author: 'jscode1003',
+    component: Fire
   }
+
 ]
 
 export function getLocationConfig(id) {
