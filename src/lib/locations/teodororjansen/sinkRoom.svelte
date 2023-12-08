@@ -12,11 +12,10 @@
     }) 
 </script>
 
-<div class="SinkRoomBackground">
-    <div class = "SinkRoom" bind:this={mainElement}>
-        <h1>{location.title}</h1>
-        <button on:click={() => goToLocation('toi')}>Go back</button>
-    </div>
+
+<div class = "SinkRoom" bind:this={mainElement}>
+    <h1>{location.title}</h1>
+    <button on:click={() => goToLocation('toi')}>Go back</button>
 </div>
 
 <style>

@@ -13,13 +13,13 @@
   }) 
 </script>
 
-<div class="toiletRoombackground">
-  <div class = "ToiletRoom" bind:this={mainElement}>
-    <h1>{location.title}</h1>
-    <button on:click={() => goToLocation('toi')}>Go back</button>
-    <img src="{lighter}" alt="lighter" width="4%" height="8.2%" style="position: absolute; top: 87%; left: 35.5%;">
-  </div>
+
+<div class = "ToiletRoom" bind:this={mainElement}>
+  <h1>{location.title}</h1>
+  <button on:click={() => goToLocation('toi')}>Go back</button>
+  <img src="{lighter}" alt="lighter" width="4%" height="8.2%" style="position: absolute; top: 87%; left: 35.5%;">
 </div>
+
 <style>
   .ToiletRoom{
     height: 90vh;
