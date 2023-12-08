@@ -44,6 +44,9 @@
     let radian = null
 
     let positionWhereToNavigate = {x: 0, y: 0}
+    let navigationEnterRoomText = "404"
+    let WhereToNavigateIMGRotation = 0
+    let changeInHeight = 10
 
     let startSpeed = 0
     let speed = startSpeed
@@ -179,50 +182,87 @@
 
   function checkCollisionDores(){
     if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
-      positionWhereToNavigate = {x: convertPercentToPixels(25.5, windowWidth), y:convertPercentToPixels(10, windowHeight)}
+      positionWhereToNavigate = {x: convertPercentToPixels(25.3, windowWidth), y:convertPercentToPixels(10, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 0
       pressE = true
+      changeInHeight = 10
       if (isEDown){
         goToLocation(roomNavigationTo[0])
       }
     }
     else if (position.x > convertPercentToPixels(40.4, windowWidth) && position.x < convertPercentToPixels(44.4, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(39.4, windowWidth), y:convertPercentToPixels(10, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 0
       pressE = true
+      changeInHeight = 10
+      
+      
       if (isEDown){
         goToLocation(roomNavigationTo[1])
       }
     }
     else if (position.x > convertPercentToPixels(53.8, windowWidth) && position.x < convertPercentToPixels(57.8, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(53, windowWidth), y:convertPercentToPixels(10, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 0
       pressE = true
+      changeInHeight = 10
       if (isEDown){
         goToLocation(roomNavigationTo[2])
       }
     }
     else if (position.x > convertPercentToPixels(67.5, windowWidth) && position.x < convertPercentToPixels(71.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(67.3, windowWidth), y:convertPercentToPixels(10, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 0
       pressE = true
+      changeInHeight = 10
       if (isEDown){
         goToLocation(roomNavigationTo[3])
       }
     }
 //rooms down
     else if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(25.3, windowWidth), y: convertPercentToPixels(66, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 180
+      changeInHeight = -10
+      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
       if (isEDown){
         goToLocation(roomNavigationTo[4])
       }
     }
     else if (position.x > convertPercentToPixels(40.4, windowWidth) && position.x < convertPercentToPixels(44.4, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(39.4, windowWidth), y: convertPercentToPixels(66, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 180
+      changeInHeight = -10
+      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
       if (isEDown){
         goToLocation(roomNavigationTo[5])
       }
     }
     else if (position.x > convertPercentToPixels(53.8, windowWidth) && position.x < convertPercentToPixels(57.8, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(53, windowWidth), y: convertPercentToPixels(66, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 180
+      changeInHeight = -10
+      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
       if (isEDown){
         goToLocation(roomNavigationTo[6])
       }
     }
     else if (position.x > convertPercentToPixels(67.5, windowWidth) && position.x < convertPercentToPixels(71.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(67.3, windowWidth), y: convertPercentToPixels(66, windowHeight)}
+      navigationEnterRoomText = "Classroom 3"
+      WhereToNavigateIMGRotation = 180
+      changeInHeight = -10
+      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
       if (isEDown){
         goToLocation(roomNavigationTo[7])
@@ -337,9 +377,15 @@
     position: fixed;
 
     width: 100px;
+    transform: rotate(deg);
   }
   #WhereToNavigateTekst{
-
+    position: fixed;
+    
+    color: black;
+    font-size: 14px;
+    z-index: 3;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
 
@@ -358,7 +404,11 @@
       {/if}
     </div>
     {#if pressE}
-    <img id="WhereToNavigateIMG" src="{whereToNavigate}" alt="" style="left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px">
-    <p id="WhereToNavigateTekst" style="left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px">diwijidajiwdjai</p>
+    <div>
+      <img id="WhereToNavigateIMG" src="{whereToNavigate}" alt="" style="left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px; transform: rotate({WhereToNavigateIMGRotation}deg);">
+      <p id="WhereToNavigateTekst" style="left: {positionWhereToNavigate.x + 10}px; top: {positionWhereToNavigate.y}px">Enter <br> {navigationEnterRoomText}</p>
+    </div>
+    
+    
     {/if}
 </div>

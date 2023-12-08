@@ -114,10 +114,6 @@ const locationsConfig = [
     title: 'Fridge',
     author: 'ruimatsiur',
     component: Fridge
-    id: 'fire',
-    title: 'Fire',
-    author: 'jscode1003',
-    component: Fire
   }
 
 ]
