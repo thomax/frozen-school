@@ -15,7 +15,7 @@
   .valueBar {
     height: 20px; /* Adjust the height as needed */
     transition: width 0.5s ease;
-    color: white;
+    color: black;
     overflow: hidden;
     font-size: 0.9rem;
     font-family: 'Courier New', Courier, monospace;

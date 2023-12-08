@@ -1,72 +1,74 @@
 <script>
   import {character} from './dataStores/characterStore.js'
-  import {setGameStatus} from './dataStores/stateStore.js'
-  import flameIcon from '../assets/NicolaiHindenes/flameIcon.png'
+  import {gameState} from './dataStores/stateStore.js'
   import ValueIndicator from './ValueIndicator.svelte'
-  import snowflakeIcon from '../assets/NicolaiHindenes/snowflakeIcon.png'
-  import frozenEffect1 from '../assets/NicolaiHindenes/frozenEffect1.png'
+  import fr1 from '../assets/thomax/freezeRate01.png'
+  import fr2 from '../assets/thomax/freezeRate02.png'
+  import fr3 from '../assets/thomax/freezeRate03.png'
+  import fr4 from '../assets/thomax/freezeRate04.png'
+  import fr5 from '../assets/thomax/freezeRate05.png'
+  import fr6 from '../assets/thomax/freezeRate06.png'
+  import fr7 from '../assets/thomax/freezeRate07.png'
+  import fr8 from '../assets/thomax/freezeRate08.png'
+  import fr9 from '../assets/thomax/freezeRate09.png'
 
   let localCharacter
-  let icon = flameIcon
+  let freezeRateIconUrl = fr3
+
+  function getFreezeRateIcon(freezeRate) {
+    if (freezeRate < 0.25) return fr1
+    if (freezeRate < 0.5) return fr2
+    if (freezeRate < 1) return fr3
+    if (freezeRate < 2) return fr4
+    if (freezeRate < 4) return fr5
+    if (freezeRate < 8) return fr6
+    if (freezeRate < 16) return fr7
+    if (freezeRate < 31) return fr8
+    return fr9
+  }
 
   // Listen for changes to character
   character.subscribe((updatedCharacter) => {
     localCharacter = updatedCharacter
-    const {temperature, health} = localCharacter
-    if (temperature <= 0) {
-      // End game if death by freezing
-      setGameStatus('gameOver')
-    }
-    if (health <= 0) {
-      // End game if death by damage
-      setGameStatus('gameOver')
-    }
-    if (temperature > 50) {
-      icon = flameIcon
-    }
-    if (temperature < 50) {
-      icon = snowflakeIcon
-    }
+  })
+
+  gameState.subscribe((updatedGameState) => {
+    freezeRateIconUrl = getFreezeRateIcon(updatedGameState.freezeRate)
   })
 </script>
 
 <div id="characterComponent">
   <ValueIndicator
     value={localCharacter.temperature}
-    options={{color: 'blue', label: 'Kroppstemperatur'}}
+    options={{color: '#A0C3D2', label: 'Body temperature'}}
   />
-  <ValueIndicator value={localCharacter.health} options={{color: 'red', label: 'Helse'}} />
-
-  <div class="outer">
-    <div
-      class="inner"
-      style="background-color: rgb({localCharacter.temperature * 2.55}, 0, {255 -
-        localCharacter.temperature * 2.55});"
-    >
-      <img src={icon} alt="icon" width="100px" />
-    </div>
+  <ValueIndicator value={localCharacter.health} options={{color: '#EAC7C7', label: 'Health'}} />
+  <div class="inventoryContainer">Inventory: {localCharacter.inventory.join(', ')}</div>
+  <div class="imageContainer">
+    <img class="freezeRateImage" src={freezeRateIconUrl} alt="icon" width="100px" />
+    <div class="freezeRateImageCaption">Room temp</div>
   </div>
 </div>
 
 <style>
-  .inner,
-  .outer {
-    margin-bottom: 20px;
+  .inventoryContainer {
+    color: white;
+    text-align: left;
+    margin-left: 6px;
   }
-
-  .outer {
+  .imageContainer {
+    position: absolute;
+    margin-top: 20px;
+    left: 3%;
+  }
+  .freezeRateImage {
+    border-radius: 50%;
     width: 100px;
     height: 100px;
-    margin: 30px auto;
-    background-color: transparent;
-    border: 3px solid #222;
-    border-radius: 100%;
   }
-
-  .inner {
-    transition: width 0.5s ease;
-    border-radius: 100%;
-    width: 100%;
-    height: 100%;
+  .freezeRateImageCaption {
+    color: white;
+    margin-top: -30px;
+    background-color: rgba(255, 255, 255, 0.5);
   }
 </style>

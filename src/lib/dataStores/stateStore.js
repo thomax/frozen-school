@@ -86,6 +86,16 @@ function stopTemperatureCountDown() {
 // React to changes in character
 character.subscribe((updatedCharacter) => {
   localCharacter = updatedCharacter
+    const {temperature, health} = updatedCharacter
+    if (temperature <= 0) {
+      // End game if death by freezing
+      setGameStatus('gameOver')
+    }
+    if (health <= 0) {
+      // End game if death by damage
+      setGameStatus('gameOver')
+    }
+
 })
 
 // Whenever gameState changes, write it to localStorage
