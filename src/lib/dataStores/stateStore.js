@@ -69,10 +69,8 @@ export function changeFreezeRate(multiplier) {
 function startTemperatureCountDown() {
   if (!countdownInterval) {
     countdownInterval = setInterval(() => {
-      if (document.hasFocus()) {
-        const charUpdate = {temperature: localCharacter.temperature - localFreezeRate}
-        updateCharacter(charUpdate)
-      }
+      const charUpdate = {temperature: localCharacter.temperature - localFreezeRate}
+      updateCharacter(charUpdate)
     }, 1000)
   }
 }
