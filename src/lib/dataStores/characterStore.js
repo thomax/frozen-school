@@ -33,6 +33,7 @@ export function changeHealth(fixedAmount) {
   character.set(updatedCharacter)
 }
 
+// Name the thing you want to add to inventory
 export function addToInventory(item) {
   const currentCharacter = get(character)
   const {inventory} = currentCharacter
@@ -46,6 +47,7 @@ export function addToInventory(item) {
   return true
 }
 
+// Name the thing you want to remove from inventory
 export function removeFromInventory(item) {
   const currentCharacter = get(character)
   let {inventory} = currentCharacter
@@ -57,6 +59,14 @@ export function removeFromInventory(item) {
     return true
   }
   return false
+}
+
+// Does the inventory contain the thing you name
+export function inventoryContains(item) {
+  const currentCharacter = get(character)
+  const {inventory} = currentCharacter
+  const itemToCheck = item.trim().toLowerCase()
+  return inventory.includes(itemToCheck)
 }
 
 
