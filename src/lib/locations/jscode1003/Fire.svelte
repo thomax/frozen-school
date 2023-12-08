@@ -2,10 +2,10 @@
     import {onMount} from 'svelte'
     import {goToLocation} from '../../dataStores/locationStore.js'
     export let location
-    import DefaultLocker from '../../../assets/jscode1003/LockerWithoutFire.png'
     import LockerWithFire from '../../../assets/jscode1003/WithFire.png'
     import Button from '../../../assets/jscode1003/button.jpg'
     let mainElement
+    import {changeTemperature} from '../../dataStores/characterStore.js'
   
   
     onMount(() => {
