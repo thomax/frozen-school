@@ -11,10 +11,16 @@
   })
 </script>
 
-<div bind:this={mainElement}>
+<div class="fc307" bind:this={mainElement}>
   <h1>{location.title}</h1>
   <div class="readableText">
     What a chilly place to start this journey. You see a door which opens into a dark hallway.
   </div>
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
 </div>
+
+<style>
+  .fc307 {
+    height: 80vh;
+  }
+</style>

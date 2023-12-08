@@ -101,6 +101,7 @@
     font-family: Helvetica, Arial, system-ui, sans-serif;
     margin-top: 20px;
     padding-top: 10px;
+    color: red;
     background-color: #eae0da;
     border-radius: 10px;
 

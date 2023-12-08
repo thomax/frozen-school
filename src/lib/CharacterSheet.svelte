@@ -44,11 +44,12 @@
   />
   <ValueIndicator value={localCharacter.health} options={{color: '#EAC7C7', label: 'Health'}} />
   <div class="inventoryContainer characterSheetLabel">
-    Inventory {localCharacter.inventory.join(', ')}
+    Inventory: {localCharacter.inventory.length == 0
+      ? 'empty'
+      : localCharacter.inventory.join(', ')}
   </div>
   <div class="freezeRateContainer">
-    <img class="freezeRateImage" src={freezeRateIconUrl} alt="icon" width="100px" />
-    <div class="freezeRateImageCaption"></div>
+    <img class="freezeRateImage" src={freezeRateIconUrl} alt="Room temperature" />
   </div>
 </div>
 
@@ -67,10 +68,6 @@
     border-radius: 50%;
     width: 100px;
     height: 100px;
-  }
-  .freezeRateImageCaption {
-    color: white;
-    margin-top: -30px;
-    background-color: rgba(255, 255, 255, 0.5);
+    opacity: 0.5;
   }
 </style>

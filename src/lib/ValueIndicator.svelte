@@ -7,7 +7,8 @@
 
 <div>
   <div class="valueBar characterSheetLabel" style="width: {value}%; background-color: {color}">
-    {label}
+    {label}:
+    {value}
   </div>
 </div>
 
