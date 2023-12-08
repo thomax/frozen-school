@@ -18,7 +18,7 @@
   <h1 class="title">{location.title}</h1>
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
   
-  <h1>Fort!, Finn tasken for hjelp</h1>
+  <h1>Fort!, du trenger papir til å kunne tenne på peisen.</h1>
   
   
   <img src={bookUrl} class= "book" on:click= {() => goToLocation('tl')} alt="book">
@@ -33,8 +33,8 @@
     width: auto;
   }
   .title{
-    color: black;
-    background-color: aqua;
+    color: red;
+    background-color:black ;
   }
   div{
     position: relative;

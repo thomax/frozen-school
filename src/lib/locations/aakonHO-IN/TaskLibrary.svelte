@@ -3,7 +3,8 @@
   import {goToLocation} from '../../dataStores/locationStore.js'
   export let location
   import table from  '../../../assets/aakonHO-IN/tabel.jpg'
-  import insideBook from '../../../assets/aakonHO-IN/insideBook.png'
+  import insideBook from '../../../assets/aakonHO-IN/NewInsideBook.png'
+  import { updateCharacter } from '../../dataStores/characterStore.js';
   let mainElement
   let paper 
 
@@ -20,8 +21,9 @@
 </script>
 <div class = "tabel" bind:this={mainElement}>
 <h1>{location.title}</h1>
-  <button on:click={() => goToLocation('bi')}>Go back</button>
+<h1>Klikk på boken og få tak i papir</h1>
 
+<button on:click={() => goToLocation('bi')}>Go back</button>
 
 
 <img src ={insideBook} on:click={addPaper} class="insideBook" alt="insideBook">
@@ -47,5 +49,9 @@
     height: 300px;
     top: 25%; 
     left: 30%;
+  }
+  h1{
+    color: red;
+    background-color: black;
   }
 </style>
