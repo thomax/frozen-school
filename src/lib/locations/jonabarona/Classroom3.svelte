@@ -1,67 +1,106 @@
 <script>
-
-//TODO
-//Endre på hvor knappens posisjon etter å ha klikket på den
-//Legge til en kode for å åpne skapet
-//Legge til et sted hvor koden er
-
 import {onMount} from 'svelte'
 import {goToLocation} from '../../dataStores/locationStore.js'
-import Classroom3 from '../../../assets/Jonatan/classroom.jpg'
+import classroom3 from '../../../assets/Jonatan/classroom.jpg'
 import OpenLocker from '../../../assets/Jonatan/openLocker.png'
-import ClosedLocker from '../../../assets/Jonatan/closedLocker.png'
+import closedLocker from '../../../assets/Jonatan/closedLocker.png'
 import {changeFreezeRate} from '../../dataStores/stateStore'
-import PostitLapp from '../../../assets/Jonatan/postit_lapp.jpg'
+import postitLapp1 from '../../../assets/Jonatan/postit_lapp1.png'
+
 
 export let location 
 
-let newBtnName = 'Go to locker'
+let code = 1234
+let enteredCode = ""
 let mainElement
 
 let position = {x:960, y:650}
 
 onMount(() => {
-  mainElement.style.background = `url('${Classroom3}')  no-repeat center center`
+  mainElement.style.background = `url('${classroom3}')  no-repeat center center`
   mainElement.style.backgroundSize = 'cover'
   changeFreezeRate(1.5)
 })
 
 let lockerVisible = false;
+let postitVisible = false;
+let roomVisible = true
 
-function handleLocker(){
-
-  
-  lockerVisible = !lockerVisible;
-    if (lockerVisible) {
-      mainElement.style.background = `url('${ClosedLocker}') no-repeat center center`; // Added this line
+function handleRoom(){
+  if (postitVisible = false){
+       //back to class
+      mainElement.style.background = `url('${classroom3}') no-repeat center center`;
       mainElement.style.backgroundSize = 'cover';
-      newBtnName = "Go back"
+      postitVisible = false
+      lockerVisible = false
+      roomVisible = true
+    }
+}
+
+function handlePostit() {
+  postitVisible = false
+  lockerVisible = false
+
+  if (postitVisible == false && lockerVisible == false) {
+    // in to poster
+    mainElement.style.background = `url('${postitLapp1}') no-repeat center center`; // Added this line
+    mainElement.style.backgroundSize = 'cover';
+    position = {x:600, y:800};
+    roomVisible = false
+  
+  }
+}
+
+function handleLocker() {
+  lockerVisible = true;
+    if (lockerVisible) {
+      mainElement.style.background = `url('${closedLocker}') no-repeat center center`; // Added this line
+      mainElement.style.backgroundSize = 'cover';
       position = {x:600, y:800}
     } else {
-      mainElement.style.background = `url('${Classroom3}') no-repeat center center`;
+      mainElement.style.background = `url('${classroom3}') no-repeat center center`;
       mainElement.style.backgroundSize = 'cover';
-      newBtnName = "Go to locker"
       position = {x:960, y:650}
     }
 }
+
+function handleCode() {
+  if (+enteredCode == code) {
+  console.log("code worked");
+  }
+}
 </script>
 
-<main>
+<div class="classroom" bind:this={mainElement}>
   <h1>{location.title}</h1>
-  <div class="classroom" bind:this={mainElement}>
-    <div class="postitCode">
-      <h2>Kode</h2>
-      <button><img src={PostitLapp} class="postitFar"></button>
-    </div>
-      <div class="codeInput">
-        <label>Kodelås</label><input> 
+  <p>brrrr.. this is a cold place.. I better be quick to se if there are something useful in her..?</p>
+
+  <!--room, postit (nytt bilde), locker-->
+    {#if postitVisible}
+      <div class="postitCode">
+        <button on:click={handleRoom}>Go Back(from postit)</button>
       </div>
-    {#if lockerVisible}
-      <div class="locker"></div>
     {/if}
-    <button class="lockerBtn" on:click={handleLocker} style="left: {position.x}px; top: {position.y}px;"><b>{newBtnName}</b></button>
+   
+    {#if lockerVisible}
+      <div class="locker">
+        <label for="codeId">Kodelås</label>
+        <input bind:value={enteredCode} id="codeId" on:input={handleCode} />
+        <button on:click={handleRoom}>Go Back(from locker)</button>
+      </div>
+    {/if}
+
+    {#if roomVisible}
+      <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
+      <div class="postitCode">
+        <button on:click={handlePostit} class="postitBtn"><img src={postitLapp1} class="postitFar"></button>
+        <button on:click={handleLocker}>Go to</button>
+      </div>
+    {/if}
+    
+    
   </div>
-</main>
+
 
 <style>
     .locker {
@@ -101,11 +140,22 @@ function handleLocker(){
     }
 
     .codeInput {
-      visibility: hidden;
+      visibility: visible;
     }
 
     .postitFar {
-      size: 20px;
+      width: 20px;
+      background: none;
+    }
+
+    .postitBtn {
+      position: absolute;
+      left: 300px;
+      top: 500px;
+      width: 1px;
+      height: 1px;
+      background-color: transparent;
+      border: none;
     }
 
     
