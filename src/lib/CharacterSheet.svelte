@@ -43,23 +43,25 @@
     options={{color: '#A0C3D2', label: 'Body temperature'}}
   />
   <ValueIndicator value={localCharacter.health} options={{color: '#EAC7C7', label: 'Health'}} />
-  <div class="inventoryContainer">Inventory: {localCharacter.inventory.join(', ')}</div>
-  <div class="imageContainer">
+  <div class="inventoryContainer characterSheetLabel">
+    Inventory {localCharacter.inventory.join(', ')}
+  </div>
+  <div class="freezeRateContainer">
     <img class="freezeRateImage" src={freezeRateIconUrl} alt="icon" width="100px" />
-    <div class="freezeRateImageCaption">Room temp</div>
+    <div class="freezeRateImageCaption"></div>
   </div>
 </div>
 
 <style>
   .inventoryContainer {
-    color: white;
-    text-align: left;
-    margin-left: 6px;
+    background-color: white;
+    width: 100%;
   }
-  .imageContainer {
+  .freezeRateContainer {
     position: absolute;
     margin-top: 20px;
     left: 3%;
+    z-index: 500;
   }
   .freezeRateImage {
     border-radius: 50%;

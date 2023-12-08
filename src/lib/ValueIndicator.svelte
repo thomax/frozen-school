@@ -6,7 +6,7 @@
 </script>
 
 <div>
-  <div class="valueBar" style="width: {value}%; background-color: {color}">
+  <div class="valueBar characterSheetLabel" style="width: {value}%; background-color: {color}">
     {label}
   </div>
 </div>
@@ -17,8 +17,5 @@
     transition: width 0.5s ease;
     color: black;
     overflow: hidden;
-    font-size: 0.9rem;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 600;
   }
 </style>
