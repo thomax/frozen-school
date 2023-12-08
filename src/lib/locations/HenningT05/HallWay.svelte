@@ -7,7 +7,7 @@
   function getViewportSize() {
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
-    console.log('Bredde: ' + windowWidth + 'px, Høyde: ' + windowHeight + 'px');
+    //console.log('Bredde: ' + windowWidth + 'px, Høyde: ' + windowHeight + 'px');
   }
  
 
@@ -23,29 +23,31 @@
     return (percent / 100) * screenSize;
   }
 
-  function ConvertPixelsToPercent(percentage, screenSize) {
-    return (percentage / 100) * screenSize; // Regner ut høyden av objektet basert på prosentandelen
+  function convertPixelsToPercent(pixels, screenSize) {
+    return (pixels / 100) * screenSize; // Regner ut høyden av objektet basert på prosentandelen
   }
 
     import mapOfSchool from "../../../assets/HenningT/MapHallway.png"
     import PressE from "../../../assets/HenningT/PressEButton.png"
     import Player from "../../../assets/HenningT/Player.png"
+    import whereToNavigate from "../../../assets/HenningT/WhereToNavigate.png"
 
     import Classroom3 from '../../locations/jonabarona/Classroom3.svelte'
 
     import {goToLocation} from '../../dataStores/locationStore.js'
 
+    let roomNavigationTo = ['norcl', 'so', 'lr', 'toi', 'bi', 'lf', 'caf', 'ki']
+
     let startPosition = {x: 50, y: 55} //in %
-    let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: convertPercentToPixels(startPosition.y, ConvertPixelsToPercent(69+10, windowHeight))}//x:850, y:390
-    let wallDectectorPosition = {x:70,y: 42.5}
-    let rotation = 0  
+    let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: convertPercentToPixels(startPosition.y, convertPixelsToPercent(69+10, windowHeight))}//x:850, y:390
+    let rotation = 90  
     let radian = null
 
-    let positionWall1 = {x: 100, y: 100}
+    let positionWhereToNavigate = {x: 0, y: 0}
 
     let startSpeed = 0
     let speed = startSpeed
-    let maxSpeed = 10
+    let maxSpeed = 5
 
     let rotationSpeed = 2.5
     let maxRotationSpeed = 4
@@ -176,11 +178,54 @@
   }
 
   function checkCollisionDores(){
-    if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y < convertPercentToPixels(30, windowHeight) && position.y > convertPercentToPixels(34, windowHeight)){
+    if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+      positionWhereToNavigate = {x: convertPercentToPixels(25.5, windowWidth), y:convertPercentToPixels(10, windowHeight)}
       pressE = true
-      console.log("knapp")
       if (isEDown){
-        goToLocation('norcl')
+        goToLocation(roomNavigationTo[0])
+      }
+    }
+    else if (position.x > convertPercentToPixels(40.4, windowWidth) && position.x < convertPercentToPixels(44.4, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+      pressE = true
+      if (isEDown){
+        goToLocation(roomNavigationTo[1])
+      }
+    }
+    else if (position.x > convertPercentToPixels(53.8, windowWidth) && position.x < convertPercentToPixels(57.8, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+      pressE = true
+      if (isEDown){
+        goToLocation(roomNavigationTo[2])
+      }
+    }
+    else if (position.x > convertPercentToPixels(67.5, windowWidth) && position.x < convertPercentToPixels(71.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+      pressE = true
+      if (isEDown){
+        goToLocation(roomNavigationTo[3])
+      }
+    }
+//rooms down
+    else if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      pressE = true
+      if (isEDown){
+        goToLocation(roomNavigationTo[4])
+      }
+    }
+    else if (position.x > convertPercentToPixels(40.4, windowWidth) && position.x < convertPercentToPixels(44.4, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      pressE = true
+      if (isEDown){
+        goToLocation(roomNavigationTo[5])
+      }
+    }
+    else if (position.x > convertPercentToPixels(53.8, windowWidth) && position.x < convertPercentToPixels(57.8, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      pressE = true
+      if (isEDown){
+        goToLocation(roomNavigationTo[6])
+      }
+    }
+    else if (position.x > convertPercentToPixels(67.5, windowWidth) && position.x < convertPercentToPixels(71.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+      pressE = true
+      if (isEDown){
+        goToLocation(roomNavigationTo[7])
       }
     }
     else{
@@ -192,7 +237,7 @@
     //left wall
     if (position.x < convertPercentToPixels(20, windowWidth)){
       if (rotation > 90 && rotation < 270){
-        speed = -(speed/1.5)
+        position.x = convertPercentToPixels(20, windowWidth)
       }
       else if (isSDown == true){
         position.x = convertPercentToPixels(20, windowWidth)
@@ -200,13 +245,13 @@
     }
 
     //right wall
-    if (position.x > convertPercentToPixels(78, windowWidth)){
+    if (position.x > convertPercentToPixels(77, windowWidth)){
       //et sted fra 0-90. et sted fra 270-0
       if (rotation < 90 && rotation >= 0 || rotation > 270 && rotation >= 0){
-        speed = -(speed/1.5)
+        position.x = convertPercentToPixels(77, windowWidth)
       }
       else if (isSDown == true){
-        position.x = convertPercentToPixels(78, windowWidth)
+        position.x = convertPercentToPixels(77, windowWidth)
       }
     }
 
@@ -236,12 +281,14 @@
 
 <style>
   .hallWayDiv{
-    position: fixed;
-    width: 1040px;
-    height: 80%;
-    left: 20%;
+    position: relative;
+    width: 100%;/*1040*/
+    height: 100%;
+    left: 0%;
     top: 0%;
-    background-color: blanchedalmond;
+    z-index: 1;
+    background-color: black;
+
   }
 
   #background{
@@ -249,41 +296,8 @@
     left: 20%;
     top: 10%;
     height: 69%;
+    width: 60%;
     background-color: black;
-  }
-
-  #wall1{
-    position: fixed;
-    left: 31%;
-    top: 32.4%;
-    width: 0.5%;
-    height: 27%;
-    background-color: aqua;
-  }
-  #wall2{
-    position: fixed;
-    left: 73%;
-    top: 32.4%;
-    width: 0.5%;
-    height: 27%;
-    background-color: aqua;
-  }
-
-  #wall3{
-    position: fixed;
-    left: 31%;
-    top: 32.4%;
-    width: 730px;
-    height: 10px;
-    background-color: aqua;
-  }
-  #wall4{
-    position: fixed;
-    left: 31%;
-    top: 59%;
-    width: 730px;
-    height: 10px;
-    background-color: aqua;
   }
 
   #Player{
@@ -291,12 +305,14 @@
     width: 20px;
     height: 20px;
     background-color: blue;
+    z-index: 2;
   }
   #PlayerSkin{
     left: -20px;
     top: -20px;
     width: 50px;
     position: fixed;
+    transform: rotate(-90deg);
   }
   #wallDectector{
     position: absolute;
@@ -306,55 +322,43 @@
     height: 5px;
     background-color: red;
     transform: rotate(90);
-  }
-
-  #door1{
-    position: fixed;
-    width: 4%;
-    height: 0.5%;
-    left: 26.5%;
-    top: 30%;
-    background-color: blueviolet;
-  }
-
-  #doorStepsDoor1{
-    position: fixed;
-    width: 4%;
-    height: 5%;
-    left: 26.5%;
-    top: 30.5%;
-    background-color: darkblue;
+    visibility: hidden;
   }
 
   #PressEIMG{
     position: relative;
     width: 50px;
-    left: 50px;
+    left: -80px;
     top: 50px;
     transform: rotate(90deg)
   }
+
+  #WhereToNavigateIMG{
+    position: fixed;
+
+    width: 100px;
+  }
+  #WhereToNavigateTekst{
+
+  }
+
 
 </style>
 
 <div class="hallWayDiv" style="">
     <img id="background" src="{mapOfSchool}" alt="">
-    <div id="wall1" style="left: {positionWall1.x}%"></div>
-    <!--<div id="wall2"></div>-->
-
-    <!--<div id="wall3"></div>
-    <div id="wall4"></div>-->
     <div id="Player" style="left: {position.x}px; top: {position.y}px; transform: rotate({rotation}deg);">
       <img id="PlayerSkin" src="{Player}" alt="">
       <div id="wallDectector" ></div>
       {#if pressE}
         <div id="pressEIcon">
           <img id="PressEIMG" src="{PressE}" alt="Press E" style="rotate: {-rotation-90}deg;">
+          
         </div>
       {/if}
     </div>
-    
-
-    <div id="door1"></div>
-    <div id="doorStepsDoor1"></div>
-
+    {#if pressE}
+    <img id="WhereToNavigateIMG" src="{whereToNavigate}" alt="" style="left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px">
+    <p id="WhereToNavigateTekst" style="left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px">diwijidajiwdjai</p>
+    {/if}
 </div>
