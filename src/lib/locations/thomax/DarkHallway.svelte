@@ -16,4 +16,5 @@
   <button on:click={() => goToLocation('hall')}>Navigation test</button>
   <button on:click={() => goToLocation('lr')}>Locker room</button>
   <button on:click={() => goToLocation('norcl')}>Classroom 3</button>
+  <button on:click={() => goToLocation('sbf')}>Snowball Fight!</button>
 </div>

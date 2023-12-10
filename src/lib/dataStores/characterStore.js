@@ -17,6 +17,7 @@ export function updateCharacter(update) {
     character.set(updatedCharacter)
   } else {
     // Reset to default character
+    character.set(null) // hack to deep reset character.inventory
     character.set(Object.assign({}, defaultCharacter))
   }
 }
