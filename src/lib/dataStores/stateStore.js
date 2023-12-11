@@ -86,7 +86,7 @@ function stopTemperatureCountDown() {
 // React to changes in character
 character.subscribe((updatedCharacter) => {
   localCharacter = updatedCharacter
-    const {temperature, health} = updatedCharacter
+    const {temperature, health} = updatedCharacter || {}
     if (temperature <= 0) {
       // End game if death by freezing
       setGameStatus('gameOver')

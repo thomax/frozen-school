@@ -15,7 +15,12 @@ import Fridge from '../locations/ruimatsiur/Fridge.svelte'
 import sinkRoom from '../locations/teodororjansen/sinkRoom.svelte'
 import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
+<<<<<<< HEAD
 import Fire from '../locations/jscode1003/Fire.svelte'
+=======
+import SnowballArena from '../locations/thomax/SnowballFight/SnowballArena.svelte'
+
+>>>>>>> bd83ffc5c60bc220c3df9002789e4a426f3224b1
 const roomNotFoundId = '404'
 
 const locationsConfig = [
@@ -117,10 +122,17 @@ const locationsConfig = [
     component: Fridge
   },
   {
+<<<<<<< HEAD
     id: 'fire',
     title: 'Fire',
     author: 'jscode1003',
     component: Fire
+=======
+    id: 'sbf',
+    title: 'Snowball Fight',
+    author: 'thomax',
+    component: SnowballArena
+>>>>>>> bd83ffc5c60bc220c3df9002789e4a426f3224b1
   }
 
 ]

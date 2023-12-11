@@ -8,7 +8,7 @@
 <div>
   <div class="valueBar characterSheetLabel" style="width: {value}%; background-color: {color}">
     {label}:
-    {value}
+    {Math.floor(value)}
   </div>
 </div>
 
