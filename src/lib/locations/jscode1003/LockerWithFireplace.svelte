@@ -35,7 +35,7 @@
 
 <div class="img" bind:this={mainElement}>
   <h1>{location.title}</h1>
-  <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
+  <button on:click={() => goToLocation('hall')}>Exit to hallway</button>
   <img class=button src="{Button}" alt="fireplace" on:click={handleClickFire}>
   <Nisse message= {message}></Nisse>
 </div>
