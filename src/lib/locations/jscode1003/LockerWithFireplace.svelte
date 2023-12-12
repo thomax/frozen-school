@@ -6,7 +6,10 @@
   import Button from '../../../assets/jscode1003/button.jpg'
   let mainElement
   import {removeFromInventory} from '../../dataStores/characterStore.js'
+  import {addToInventory} from '../../dataStores/characterStore.js';
   let message = ""
+  import Nisse from '../../../assets/jscode1003/nisse.png'
+
   
   onMount(() => {
     mainElement.style.background = `url('${DefaultLocker}')  no-repeat center center`
@@ -17,11 +20,16 @@
     const paperOK = removeFromInventory("paper")
     if (paperOK) {
       goToLocation('fire')
-      message = "Papir ble tent på"
+      message = "Paper was set on fire"
       return
     }
     
-    message = "Det var synd, du trenger papir for å tenne i peisen"
+    message = "You need paper to light the fireplace"
+  }
+
+  function handlePaper(){
+    addToInventory('Paper')
+    message='Paper is added to inventory'
   }
 </script>
 
@@ -32,7 +40,10 @@
   <div>Locker with fireplace</div>
 
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
+  <button on:click={handlePaper}>Add paper to inventory</button>
   <img class=button src="{Button}" alt="fireplace" on:click={handleClickFire}>
+  <p class= "message">{message}</p>
+    <img class="nisse" src="{Nisse}" alt="nisse">
 </div>
 
 <style>
@@ -48,6 +59,27 @@
     position: absolute; 
     top: 65%; 
     left: 45%;
+  }
+
+  .nisse {
+    width: 90px;
+    position: absolute; 
+    top: 60%; 
+    left: 0.001%;
+    }
+
+    .message {
+    color: black;
+    background-color: #7dffffef;
+    border: 3px solid black;
+    padding: 15px;
+    width: 150px;
+    height: 100px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    position: absolute; 
+    top: 55%; 
+    left: 9%;
   }
 </style>
 
