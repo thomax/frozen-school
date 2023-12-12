@@ -12,6 +12,8 @@ import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
 import Toilet1 from '../locations/teodororjansen/toilet1.svelte'
 import Kitchen from '../locations/ruimatsiur/Kitchen.svelte'
 import Fridge from '../locations/ruimatsiur/Fridge.svelte'
+import apple from '../locations/ruimatsiur/apple.svelte'
+import banana from '../locations/ruimatsiur/banana.svelte'
 import sinkRoom from '../locations/teodororjansen/sinkRoom.svelte'
 import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
@@ -119,6 +121,18 @@ const locationsConfig = [
     title: 'Fridge',
     author: 'ruimatsiur',
     component: Fridge
+  },
+  {
+    id: 'ba',
+    title: 'banana',
+    author: 'ruimatsiur',
+    component: banana
+  },
+    {
+    id: 'ap',
+    title: 'apple',
+    author: 'ruimatsiur',
+    component: apple
   },
   {
     id: 'fire',
