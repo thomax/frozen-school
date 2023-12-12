@@ -31,9 +31,7 @@
     import PressE from "../../../assets/HenningT/PressEButton.png"
     import Player from "../../../assets/HenningT/Player.png"
     import whereToNavigate from "../../../assets/HenningT/WhereToNavigate.png"
-
-    import Classroom3 from '../../locations/jonabarona/Classroom3.svelte'
-
+    
     import {goToLocation} from '../../dataStores/locationStore.js'
 
     let roomNavigationTo = ['norcl', 'so', 'lr', 'toi', 'bi', 'lf', 'caf', 'ki']
