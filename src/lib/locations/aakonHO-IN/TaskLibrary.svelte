@@ -3,7 +3,7 @@
   import {goToLocation} from '../../dataStores/locationStore.js'
   export let location
   import table from  '../../../assets/aakonHO-IN/tabel.jpg'
-  import insideBook from '../../../assets/aakonHO-IN/NewInsideBook.png'
+  import insideBook from '../../../assets/aakonHO-IN/insideBook.png'
   import { addToInventory } from '../../dataStores/characterStore.js';
   let mainElement
   let message = ""
@@ -20,10 +20,11 @@
   }
 </script>
 <div class = "tabel" bind:this={mainElement}>
-  <h1>{location.title}</h1>
+  <div class="readableText"><h1>{location.title}</h1></div>
+  <div class="readableText"><p>click the book to obtain paper</p></div>
   <button on:click={() => goToLocation('bi')}>Go back</button>
-  <div><h2>{message}</h2></div>
-  <h1>Klikk på boken og få tak i papir</h1>
+  <div class="message"><h2>{message}</h2></div>
+  
   
   
   
@@ -38,23 +39,21 @@
     height: 1000px;
     width: auto;
   }
-  div{
-    position: relative;
-    width: 80vh;
-    height: 80vw;
-  }
+
   .insideBook{
     position: absolute; 
     width:500px;
     height: 300px;
-    top: 25%; 
-    left: 30%;
+    top: 35%; 
+    left: 45%;
   }
   h1{
-    color: red;
-    background-color: black;
+    color:black;
   }
-  h2{
-    color: red;
-  }
+  
+.message{
+  color:red;
+}
+
+  
 </style>

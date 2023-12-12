@@ -15,10 +15,11 @@
 </script>
 
 <div class = "libraryBox" bind:this={mainElement}>
-  <h1 class="title">{location.title}</h1>
+  <div class="readableText"><h1 class="readableText">{location.title}</h1></div>
+  
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
   
-  <h1>Fort!, du trenger papir til å kunne tenne på peisen.</h1>
+  <div class="readableText"><p>You need to find paper to light the fireplace</p></div>
   
   
   <img src={bookUrl} class= "book" on:click= {() => goToLocation('tl')} alt="book">
@@ -32,25 +33,18 @@
     height: 1000px;
     width: auto;
   }
-  .title{
-    color: red;
-    background-color:black ;
-  }
-  div{
-    position: relative;
-    width: 80vh;
-    height: 80vw;
-  }
+  
+  
   .book{
     position: absolute; 
-    width:100px;
-    height: 70px;
-    top: 60%; 
-    left: 47%;
+    width:87px;
+    height: 58px;
+    top: 74%; 
+    left: 48%;
   }
   h1{
-    color:red;
-    background-color: blue;
-  }
+    color:black;
+    }
+  
   
 </style>
