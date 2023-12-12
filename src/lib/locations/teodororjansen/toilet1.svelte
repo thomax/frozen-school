@@ -37,8 +37,4 @@
     margin: auto;
     color: red;
   }
-  
-  .toiletRoombackground{
-    background-color: black;
-  }
 </style>  

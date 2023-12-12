@@ -30,8 +30,4 @@
     position: relative;
     margin: auto;
   }
-  
-  .toiletBackground{
-    background-color: black;
-  }
 </style>
