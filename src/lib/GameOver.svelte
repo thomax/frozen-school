@@ -8,7 +8,7 @@
   }
 </script>
 
-<div id="gameOverComponent" class="gameStateBox">
+<div id="gameOverComponent">
   <h1>Game over!</h1>
   <div>
     You died with temperature {Math.floor($character.temperature)} and health {$character.health} 🥶

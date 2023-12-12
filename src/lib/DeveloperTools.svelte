@@ -97,23 +97,22 @@
 
 <style>
   #devToolsComponent {
-    margin: 5%;
     font-family: Helvetica, Arial, system-ui, sans-serif;
     margin-top: 20px;
     padding-top: 10px;
     color: red;
     background-color: #eae0da;
     border-radius: 10px;
-
     opacity: 0.9;
     background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
     background-size: 10px 10px;
   }
 
   table {
-    width: 60%;
+    width: 600px;
     table-layout: fixed;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   tr {
     margin: 0;

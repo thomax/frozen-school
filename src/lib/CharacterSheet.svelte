@@ -57,11 +57,11 @@
   .inventoryContainer {
     background-color: white;
     width: 100%;
+    height: 20px;
   }
   .freezeRateContainer {
-    position: absolute;
-    margin-top: 20px;
-    left: 3%;
+    float: right;
+    margin-top: -20px;
     z-index: 500;
   }
   .freezeRateImage {
@@ -69,5 +69,6 @@
     width: 100px;
     height: 100px;
     opacity: 0.9;
+    border: 10px solid rgba(0, 0, 0);
   }
 </style>

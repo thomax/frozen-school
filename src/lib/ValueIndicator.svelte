@@ -5,16 +5,14 @@
   const {color, label} = options
 </script>
 
-<div>
-  <div class="valueBar characterSheetLabel" style="width: {value}%; background-color: {color}">
-    {label}:
-    {Math.floor(value)}
-  </div>
+<div class="valueBar characterSheetLabel" style="width: {value}%; background-color: {color}">
+  {label}:
+  {Math.floor(value)}
 </div>
 
 <style>
   .valueBar {
-    height: 20px; /* Adjust the height as needed */
+    height: 20px;
     transition: width 0.5s ease;
     color: black;
     overflow: hidden;

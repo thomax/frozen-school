@@ -21,6 +21,7 @@
 
 <style>
   .fc307 {
-    height: 80vh;
+    height: 100%;
+    width: 100%;
   }
 </style>
