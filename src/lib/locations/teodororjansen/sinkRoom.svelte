@@ -14,7 +14,7 @@
 
 
 <div class = "SinkRoom" bind:this={mainElement}>
-    <h1>{location.title}</h1>
+    <div class="readableText" >Sink<hr>The sink is frozen</div>
     <button on:click={() => goToLocation('toi')}>Go back</button>
 </div>
 
