@@ -31,10 +31,10 @@
     import PressE from "../../../assets/HenningT/PressEButton.png"
     import Player from "../../../assets/HenningT/Player.png"
     import whereToNavigate from "../../../assets/HenningT/WhereToNavigate.png"
-    
+
     import {goToLocation} from '../../dataStores/locationStore.js'
 
-    let roomNavigationTo = ['norcl', 'so', 'lr', 'toi', 'bi', 'lf', 'caf', 'ki']
+    let roomNavigationTo = ['norcl', 'so', 'lr', 'toi', 'bi', 'lf', 'sbf', 'ki']
 
     let startPosition = {x: 50, y: 55} //in %
     let position = {x: convertPercentToPixels(startPosition.x, windowWidth), y: convertPercentToPixels(startPosition.y, convertPixelsToPercent(69+10, windowHeight))}//x:850, y:390
@@ -44,7 +44,7 @@
     let positionWhereToNavigate = {x: 0, y: 0}
     let navigationEnterRoomText = "404"
     let WhereToNavigateIMGRotation = 0
-    let changeInHeight = 10
+    let howColdInRoom = -3
 
     let startSpeed = 0
     let speed = startSpeed
@@ -132,6 +132,17 @@
       else if (event.key === 'e'){
         isEDown = true;
       }
+      else if (event.key === 'ArrowLeft') {
+        rotation = rotation - rotateUp()
+        isADown = true;
+      } else if (event.key === 'ArrowRight') {
+        rotation = rotation + rotateUp()
+        isDDown = true;
+      } else if (event.key === 'ArrowUp') {
+        isWDown = true;
+      } else if (event.key === 'ArrowDown') {
+        isSDown = true;
+      }
       move()
     }
 
@@ -139,9 +150,7 @@
       if (event.key === 'a') {
         rotationSpeed = 1
         isADown = false;
-        speed = startSpeed
       } 
-
       else if (event.key === 'd') {
         rotationSpeed = 1
         isDDown = false;
@@ -159,6 +168,18 @@
       else if (event.key === 'e') {
         isEDown = false;
       } 
+      else if (event.key === 'ArrowLeft') {
+        rotationSpeed = 1
+        isADown = false;
+      } else if (event.key === 'ArrowRight') {
+        rotationSpeed = 1
+        isDDown = false;
+      } else if (event.key === 'ArrowUp') {
+        isWDown = false;
+        speed = startSpeed
+      } else if (event.key === 'ArrowDown') {
+        isEDown = false;
+      }
     }
   });
   
@@ -179,89 +200,83 @@
   }
 
   function checkCollisionDores(){
-    if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+    if (position.x > convertPercentToPixels(25.5, windowWidth) && position.x < convertPercentToPixels(31.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(25.3, windowWidth), y:convertPercentToPixels(10, windowHeight)}
       navigationEnterRoomText = "Classroom 3"
       WhereToNavigateIMGRotation = 0
       pressE = true
-      changeInHeight = 10
+      howColdInRoom = - 4.5
       if (isEDown){
         goToLocation(roomNavigationTo[0])
       }
     }
-    else if (position.x > convertPercentToPixels(40.4, windowWidth) && position.x < convertPercentToPixels(44.4, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+    else if (position.x > convertPercentToPixels(39.4, windowWidth) && position.x < convertPercentToPixels(45.4, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(39.4, windowWidth), y:convertPercentToPixels(10, windowHeight)}
-      navigationEnterRoomText = "Classroom 3"
+      navigationEnterRoomText = "The Strange office"
       WhereToNavigateIMGRotation = 0
-      pressE = true
-      changeInHeight = 10
-      
-      
+      pressE = true      
+      howColdInRoom = - 2
       if (isEDown){
         goToLocation(roomNavigationTo[1])
       }
     }
-    else if (position.x > convertPercentToPixels(53.8, windowWidth) && position.x < convertPercentToPixels(57.8, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+    else if (position.x > convertPercentToPixels(52.8, windowWidth) && position.x < convertPercentToPixels(58.8, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(53, windowWidth), y:convertPercentToPixels(10, windowHeight)}
-      navigationEnterRoomText = "Classroom 3"
+      navigationEnterRoomText = "The Locker Room"
       WhereToNavigateIMGRotation = 0
       pressE = true
-      changeInHeight = 10
+      howColdInRoom = -5
       if (isEDown){
         goToLocation(roomNavigationTo[2])
       }
     }
-    else if (position.x > convertPercentToPixels(67.5, windowWidth) && position.x < convertPercentToPixels(71.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
+    else if (position.x > convertPercentToPixels(66.5, windowWidth) && position.x < convertPercentToPixels(72.5, windowWidth) && position.y > convertPercentToPixels(28, windowHeight) && position.y < convertPercentToPixels(34, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(67.3, windowWidth), y:convertPercentToPixels(10, windowHeight)}
-      navigationEnterRoomText = "Classroom 3"
+      navigationEnterRoomText = "The Toilets"
       WhereToNavigateIMGRotation = 0
       pressE = true
-      changeInHeight = 10
+      howColdInRoom = -3
       if (isEDown){
         goToLocation(roomNavigationTo[3])
       }
     }
 //rooms down
-    else if (position.x > convertPercentToPixels(26.5, windowWidth) && position.x < convertPercentToPixels(30.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+    else if (position.x > convertPercentToPixels(25.5, windowWidth) && position.x < convertPercentToPixels(31.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(25.3, windowWidth), y: convertPercentToPixels(66, windowHeight)}
-      navigationEnterRoomText = "Classroom 3"
+      navigationEnterRoomText = "The Library"
       WhereToNavigateIMGRotation = 180
-      changeInHeight = -10
-      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
+      howColdInRoom = -1
       if (isEDown){
         goToLocation(roomNavigationTo[4])
       }
     }
-    else if (position.x > convertPercentToPixels(40.4, windowWidth) && position.x < convertPercentToPixels(44.4, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+    else if (position.x > convertPercentToPixels(39.4, windowWidth) && position.x < convertPercentToPixels(45.4, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(39.4, windowWidth), y: convertPercentToPixels(66, windowHeight)}
-      navigationEnterRoomText = "Classroom 3"
+      navigationEnterRoomText = "The fireplace room"
       WhereToNavigateIMGRotation = 180
-      changeInHeight = -10
-      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
+      howColdInRoom = 2
       if (isEDown){
         goToLocation(roomNavigationTo[5])
       }
     }
-    else if (position.x > convertPercentToPixels(53.8, windowWidth) && position.x < convertPercentToPixels(57.8, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+    else if (position.x > convertPercentToPixels(52.8, windowWidth) && position.x < convertPercentToPixels(58.8, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(53, windowWidth), y: convertPercentToPixels(66, windowHeight)}
-      navigationEnterRoomText = "Classroom 3"
+      navigationEnterRoomText = "Snowball Fight"
       WhereToNavigateIMGRotation = 180
-      changeInHeight = -10
-      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
+      howColdInRoom = -5
       if (isEDown){
         goToLocation(roomNavigationTo[6])
       }
     }
-    else if (position.x > convertPercentToPixels(67.5, windowWidth) && position.x < convertPercentToPixels(71.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
+    else if (position.x > convertPercentToPixels(66.5, windowWidth) && position.x < convertPercentToPixels(72.5, windowWidth) && position.y > convertPercentToPixels(56.5, windowHeight) && position.y > convertPercentToPixels(50.5, windowHeight)){
       positionWhereToNavigate = {x: convertPercentToPixels(67.3, windowWidth), y: convertPercentToPixels(66, windowHeight)}
-      navigationEnterRoomText = "Classroom 3"
+      navigationEnterRoomText = "The Kitchen"
       WhereToNavigateIMGRotation = 180
-      changeInHeight = -10
-      positionWhereToNavigate.y = positionWhereToNavigate.y - 10
       pressE = true
+      howColdInRoom = 0
       if (isEDown){
         goToLocation(roomNavigationTo[7])
       }
@@ -322,8 +337,6 @@
     position: relative;
     width: 100%;/*1040*/
     height: 100%;
-    left: 0%;
-    top: 0%;
     z-index: 1;
     background-color: black;
 
@@ -342,7 +355,6 @@
     position: fixed;
     width: 20px;
     height: 20px;
-    background-color: blue;
     z-index: 2;
   }
   #PlayerSkin{
@@ -374,14 +386,16 @@
   #WhereToNavigateIMG{
     position: fixed;
 
-    width: 100px;
+    width: 120px;
     transform: rotate(deg);
+    opacity: 0.7;
   }
+
   #WhereToNavigateTekst{
     position: fixed;
-    
+
     color: black;
-    font-size: 14px;
+    font-size: 12px;
     z-index: 3;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
@@ -404,7 +418,7 @@
     {#if pressE}
     <div>
       <img id="WhereToNavigateIMG" src="{whereToNavigate}" alt="" style="left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px; transform: rotate({WhereToNavigateIMGRotation}deg);">
-      <p id="WhereToNavigateTekst" style="left: {positionWhereToNavigate.x + 10}px; top: {positionWhereToNavigate.y}px">Enter <br> {navigationEnterRoomText}</p>
+        <p id="WhereToNavigateTekst" style="left: {positionWhereToNavigate.x+10}px; top: {positionWhereToNavigate.y + 10}px">Enter <br> {navigationEnterRoomText}<br>{howColdInRoom}℃</p>
     </div>
     
     
