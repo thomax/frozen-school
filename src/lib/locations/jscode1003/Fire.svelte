@@ -4,8 +4,7 @@
     export let location
     import LockerWithFire from '../../../assets/jscode1003/WithFire.png'
     let mainElement
-    import {changeTemperature} from '../../dataStores/characterStore.js'
-    import Nisse from '../../../assets/jscode1003/nisse.png'
+    import Nisse from './Nisse.svelte';
     let message = "30+ in temprature! Paper was set on fire and removed from your inventory."
   
   
@@ -14,16 +13,12 @@
       mainElement.style.backgroundSize = 'cover'
     })
 
-
-    changeTemperature(30);
   </script>
 
   <div class="img" bind:this={mainElement}>
     <h1>{location.title}</h1>
-    <div>Locker with fireplace</div>
     <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
-    <p class= "message">{message}</p>
-    <img class="nisse" src="{Nisse}" alt="nisse">
+    <Nisse message= {message}></Nisse>
   </div>
   
   <style>
@@ -50,11 +45,11 @@
 
     .message {
     color: black;
-    background-color: #ff7d7de1;
+    background-color: #ff7d7df0;
     border: 3px solid black;
     padding: 15px;
     width: 150px;
-    height: 90px;
+    height: auto;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     position: absolute; 

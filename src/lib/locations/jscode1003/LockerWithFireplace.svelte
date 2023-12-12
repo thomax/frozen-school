@@ -6,9 +6,9 @@
   import Button from '../../../assets/jscode1003/button.jpg'
   let mainElement
   import {removeFromInventory} from '../../dataStores/characterStore.js'
-  import {addToInventory} from '../../dataStores/characterStore.js';
+  import {changeTemperature} from '../../dataStores/characterStore.js'
   let message = ""
-  import Nisse from '../../../assets/jscode1003/nisse.png'
+  import Nisse from './Nisse.svelte'
 
   
   onMount(() => {
@@ -21,29 +21,23 @@
     if (paperOK) {
       goToLocation('fire')
       message = "Paper was set on fire"
+      changeTemperature(30);
       return
     }
     
-    message = "You need paper to light the fireplace"
+    message = "You need paper to light the fireplace. Clue: Library"
   }
 
-  function handlePaper(){
-    addToInventory('Paper')
-    message='Paper is added to inventory'
-  }
+
 </script>
 
 
 
 <div class="img" bind:this={mainElement}>
   <h1>{location.title}</h1>
-  <div>Locker with fireplace</div>
-
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
-  <button on:click={handlePaper}>Add paper to inventory</button>
   <img class=button src="{Button}" alt="fireplace" on:click={handleClickFire}>
-  <p class= "message">{message}</p>
-    <img class="nisse" src="{Nisse}" alt="nisse">
+  <Nisse message= {message}></Nisse>
 </div>
 
 <style>
@@ -74,7 +68,7 @@
     border: 3px solid black;
     padding: 15px;
     width: 150px;
-    height: 100px;
+    height: auto;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
     position: absolute; 
