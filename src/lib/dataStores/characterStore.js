@@ -18,7 +18,10 @@ export function updateCharacter(update) {
   } else {
     // Reset to default character
     character.set(null) // hack to deep reset character.inventory
-    character.set(Object.assign({}, defaultCharacter))
+    // use timeout to ensure inventory is emptied
+    setTimeout(() => {
+      character.set(Object.assign({}, defaultCharacter))
+    }, 500)
   }
 }
 
