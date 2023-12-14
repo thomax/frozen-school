@@ -12,7 +12,7 @@
 
   export let location
 
-  let randomPosY = Math.floor(Math.random() * 900) + 100;
+  let randomPosY;
   let randomPosX = Math.floor(Math.random() * 900) + 100;
   let randomCode = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit code
   let inputCode = "";
@@ -30,6 +30,17 @@
     mainElement.style.backgroundSize = 'cover'
     changeFreezeRate(1.5)
   })
+
+  onMount(() => {
+    generateRandomNumber();
+  });
+
+  function generateRandomNumber() {
+    // Generate a random number between 0 (inclusive) and 1 (exclusive)
+    const randomFraction = Math.random();
+    randomPosY = Math.round(240 + randomFraction * (600 - 240));
+    console.log(randomPosY)
+  }
 
   function handleRoom() {
     //back to class
