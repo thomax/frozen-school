@@ -157,9 +157,12 @@
     onUpdate('player', (player) => {
       if (player.pos.y < 0) {
         go('gameOver')
-        goToLocation('dh')
       }
     })
+  })
+
+  scene('gameOver', () => {
+    goToLocation('dh')
   })
 
   // Wait until elements are in place before starting the game
