@@ -40,7 +40,7 @@
     position: absolute; 
     width:58px;
     height: 40px;
-    top: 68.2%; 
+    top: 66.2%; 
     left: 47.9%;
   }
   h1{
