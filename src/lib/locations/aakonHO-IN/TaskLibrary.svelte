@@ -20,10 +20,10 @@
   }
 </script>
 <div class = "tabel" bind:this={mainElement}>
-  <div class="readableText"><h1>{location.title}</h1></div>
+  <div class="readableText">{location.title}</div>
   <div class="readableText"><p>click the book to obtain paper</p></div>
   <button on:click={() => goToLocation('bi')}>Go back</button>
-  <div class="message"><h2>{message}</h2></div>
+  <div class="message">{message}</div>
   
   
   
@@ -36,20 +36,19 @@
 
 <style>
   .tabel{
-    height: 1000px;
-    width: auto;
+    height: 90vh;
+    width: 70vw;
+    margin: auto;
   }
 
   .insideBook{
     position: absolute; 
-    width:500px;
-    height: 300px;
-    top: 35%; 
-    left: 45%;
+    width:170px;
+    height: 150px;
+    top: 36%; 
+    left: 53%;
   }
-  h1{
-    color:black;
-  }
+  
   
 .message{
   color:red;

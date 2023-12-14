@@ -15,9 +15,9 @@
 </script>
 
 <div class = "libraryBox" bind:this={mainElement}>
-  <div class="readableText"><h1 class="readableText">{location.title}</h1></div>
+  <div class="readableText">{location.title}</div>
   
-  <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
+  <button on:click={() => goToLocation('hall')}>Exit to hallway</button>
   
   <div class="readableText"><p>You need to find paper to light the fireplace</p></div>
   
@@ -30,17 +30,18 @@
 
 <style>
   .libraryBox {
-    height: 1000px;
-    width: auto;
+    height: 90vh;
+    width: 70vw;
+    margin: auto;
   }
   
   
   .book{
     position: absolute; 
-    width:87px;
-    height: 58px;
-    top: 74%; 
-    left: 48%;
+    width:58px;
+    height: 40px;
+    top: 68.2%; 
+    left: 47.9%;
   }
   h1{
     color:black;
