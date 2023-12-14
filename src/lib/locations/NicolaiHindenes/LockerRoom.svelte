@@ -1,6 +1,7 @@
 <script>
   import {onMount} from 'svelte'
   import {asDraggable, asDroppable, asDropZone} from 'svelte-drag-and-drop-actions'
+  import {changeTemperature} from '../../dataStores/characterStore'
   import {goToLocation} from '../../dataStores/locationStore.js'
   import lockerRoom from '../../../assets/NicolaiHindenes/LockerRoom.png'
   import redSock from '../../../assets/NicolaiHindenes/RedSock.png'
@@ -54,7 +55,8 @@
     yellowSockInCorrectZone = false;
 
     showSorting = false;
-
+    
+    changeTemperature(20)
 
   }
 
