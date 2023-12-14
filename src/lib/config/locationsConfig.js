@@ -1,6 +1,6 @@
 // @ts-nocheck
 import FrozenClassroom from '../locations/thomax/FrozenClassroom.svelte'
-import Hallway from '../locations/HenningT05/Hallway.svelte'
+import HallWay from '../locations/HenningT05/HallWay.svelte'
 import StrangeOffice from '../locations/philiptorrissen/StrangeOffice.svelte'
 import Room404 from '../locations/thomax/Room404.svelte'
 import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
@@ -34,7 +34,7 @@ const locationsConfig = [
     id: 'hall',
     title: 'Hallway',
     author: 'Henning',
-    component: Hallway
+    component: HallWay
   },
   {
     id: 'dh',
