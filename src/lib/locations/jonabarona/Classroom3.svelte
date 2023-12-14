@@ -112,7 +112,7 @@
       <p class="readableText">Maybe this number can come in handy..?</p>
       <h1 class="randomCode">{randomCode}</h1>
       {#if postitBackToRoom == true}
-        <button class="goBackBtn" on:click={handleRoom}>Go Back(from postit)</button>
+        <button class="goBackBtn" on:click={handleRoom}>Go Back</button>
       {/if}
     </div>
   {/if}
@@ -124,7 +124,7 @@
         <label for="codeInput"><img class="codePic" src={kodelås}></label>
         <input type="text" id="codeInput" bind:value={inputCode} on:input={handleCheckCode} maxlength="4"/>
       </div>
-      <button class="goBackBtn" on:click={handleRoom}>Go Back(from locker)</button>
+      <button class="goBackBtn" on:click={handleRoom}>Go Back</button>
     </div>
   {/if}
 
@@ -167,10 +167,6 @@
     background-position: center;
   }
 
-  .lockerBtn {
-    position: absolute;
-  }
-
   .codeInput {
     visibility: visible;
   }
@@ -206,7 +202,7 @@
 
   .lockerBtn {
     position: relative;
-    left: 380px;
+    left: 320px;
     top:180px; 
   }
 
@@ -230,7 +226,7 @@
   .codeInputBox {
     position: absolute;
     margin-top: 200px;
-    margin-left:500px;
+    margin-left:370px;
   }
 
   .codePic {
