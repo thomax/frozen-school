@@ -15,7 +15,7 @@
 <div class="fc307" bind:this={mainElement}>
   <h1>{location.title}</h1>
   <Nisse
-    message="What a chilly place to start this journey. You see a door which opens into a dark hallway"
+    message="You fell asleep during class, and suddenly wake up. It's night and it's freezing! You see a door which opens into a dark hallway"
   ></Nisse>
   <button on:click={() => goToLocation('hall')}>Exit to hallway</button>
 </div>
