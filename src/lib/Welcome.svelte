@@ -1,16 +1,20 @@
 <script>
-  import { setGameStatus } from './dataStores/stateStore.js'
+  import {setGameStatus} from './dataStores/stateStore.js'
 
   function handleStatusChange(newStatus) {
     setGameStatus(newStatus)
   }
 </script>
 
-<<<<<<< Updated upstream
 <div id="welcome-component">
-  <h1>Welcome!</h1>
-  <button on:click={() => handleStatusChange('gameRunning')}>Play the game!</button>
-=======
+  <h1>Welcome to the Frozen School!</h1>
+  <p>
+    You find yourself locked in a freezing school. Your mission is to explore the rooms, complete
+    tasks, and survive the cold. Can you survive the cold?
+  </p>
+  <button on:click={() => handleStatusChange('gameRunning')}>Start the game!</button>
+</div>
+
 <style>
   @keyframes fadeIn {
     from {
@@ -22,7 +26,11 @@
   }
 
   @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
       transform: translateY(0);
     }
     40% {
@@ -33,7 +41,8 @@
     }
   }
 
-  body, html {
+  body,
+  html {
     height: 100%;
     margin: 0;
   }
@@ -47,7 +56,9 @@
     animation: fadeIn 1s ease-out;
   }
 
-  h1, p, button {
+  h1,
+  p,
+  button {
     font-family: 'Silkscreen', monospace; /* Use the Silkscreen font */
   }
 
@@ -61,9 +72,9 @@
     color: #000000;
     text-align: center;
     margin: 20px;
-    background-color: #f8f8f8; 
-    padding: 15px; 
-    border-radius: 10px; 
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 10px;
   }
 
   button {
@@ -83,18 +94,3 @@
     transform: scale(1.1);
   }
 </style>
-
-<!-- Link til Google fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
-
-<div id="welcome-component" class="gameStateBox">
-  <h1>Welcome to the Frozen School!</h1>
-  <p>
-    You find yourself locked in a freezing school. Your mission is to explore the rooms,
-    complete tasks, and survive the cold. Can you survive the cold?
-  </p>
-  <button on:click={() => handleStatusChange('gameRunning')}>Start the game!</button>
->>>>>>> Stashed changes
-</div>

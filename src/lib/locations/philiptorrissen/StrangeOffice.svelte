@@ -10,24 +10,19 @@
   import costume8 from '../../../assets/philiptorrissen/costume8.png'
   import costume9 from '../../../assets/philiptorrissen/costume9.png'
   import costume10 from '../../../assets/philiptorrissen/costume10.png'
-<<<<<<< Updated upstream
   import background from '../../../assets/philiptorrissen/Background.jpg'
   import {onMount} from 'svelte'
-=======
-  import background from '../../../assets/philiptorrissen/background.jpg'
-  import { character, changeTemperature, changeHealth } from '../../dataStores/characterStore.js'
-  import { onMount } from 'svelte'
-  import GameOver from './gameOver.svelte';
->>>>>>> Stashed changes
+  import {character, changeTemperature, changeHealth} from '../../dataStores/characterStore.js'
+  import GameOver from './gameOver.svelte'
 
   export let location
   let maxAttempts = 10
   let guess = ''
   let wordList = [
     'ices',
-    'snow',
+    'snow'
     // ... (remaining words)
-  ];
+  ]
   let attemptsLeft = maxAttempts
   let word = getRandomWord()
   let displayWord = Array.from(word).fill('_')
@@ -40,13 +35,13 @@
 
   function showGameOverScreen() {
     // Render the game over screen when the game ends
-    import('./gameOver.svelte').then(({ default: GameOver }) => {
-      const gameContainer = document.querySelector('.game-container');
-      gameContainer.innerHTML = '';
+    import('./gameOver.svelte').then(({default: GameOver}) => {
+      const gameContainer = document.querySelector('.game-container')
+      gameContainer.innerHTML = ''
       new GameOver({
-        target: gameContainer,
-      });
-    });
+        target: gameContainer
+      })
+    })
   }
 
   function handleChangeHealth(amount) {
@@ -61,27 +56,14 @@
     alert(word)
   }
 
-<<<<<<< Updated upstream
-  function makeGuess() {}
-
-  function resetGame() {}
-
-  onMount(() => {
-    const mainElement = document.querySelector('.background-image')
-    if (mainElement) {
-      mainElement.style.background = `url('${background}') no-repeat center center`
-      mainElement.style.backgroundSize = 'cover'
-      mainElement.style.backgroundPosition = 'top 100px'
-      mainElement.style.backgroundSize = 'contain'
-=======
   function makeGuess() {
     if (guess.length !== 1 || !/[a-zA-Z]/.test(guess)) {
-      alert("Please enter a valid single letter guess.")
+      alert('Please enter a valid single letter guess.')
       return
     }
 
     if (guessedLetters.includes(guess)) {
-      alert("You already guessed this letter.")
+      alert('You already guessed this letter.')
       return
     }
 
@@ -96,7 +78,7 @@
 
       if (!displayWord.includes('_')) {
         handleChangeTemperature(40)
-        alert("Congratulations! You guessed the word.")
+        alert('Congratulations! You guessed the word.')
         // Reset the guess variable to an empty string
         guess = ''
         return
@@ -104,12 +86,12 @@
     } else {
       attemptsLeft--
       incorrectGuesses.push(guess)
-      console.log('Incorrect guesses:', incorrectGuesses);
-      incorrectGuesses = [...incorrectGuesses];
+      console.log('Incorrect guesses:', incorrectGuesses)
+      incorrectGuesses = [...incorrectGuesses]
 
       if (attemptsLeft === 0) {
         alert(`Sorry, you ran out of attempts. The correct word was "${word}".`)
-        showGameOverScreen();
+        showGameOverScreen()
         handleChangeHealth(-50)
         // Reset the guess variable to an empty string
         guess = ''
@@ -122,44 +104,43 @@
 
   function handleKeyPress(event) {
     if (event.key === 'Enter') {
-      makeGuess();
+      makeGuess()
     }
   }
 
   onMount(() => {
-    const mainElement = document.querySelector('.game-container')
+    const mainElement = document.querySelector('.background-image')[0]
     if (mainElement) {
       mainElement.style.background = `url('${background}') no-repeat center center`
-      mainElement.style.backgroundSize = 'cover';
->>>>>>> Stashed changes
+      mainElement.style.backgroundPosition = 'top 100px'
+      mainElement.style.backgroundSize = 'cover'
     }
   })
 </script>
 
-<<<<<<< Updated upstream
 <div class="game-container">
   <div class="background-image">
     <h1>{location.title}</h1>
     {#if attemptsLeft === 10}
-      <img class="hangman" src={costume1} alt="Image for Attempt 10" />
+      <img class="hangman" src={costume1} alt="Attempt 10" />
     {:else if attemptsLeft === 9}
-      <img class="hangman" src={costume2} alt="Image for Attempt 9" />
+      <img class="hangman" src={costume2} alt="Attempt 9" />
     {:else if attemptsLeft === 8}
-      <img class="hangman" src={costume3} alt="Image for Attempt 8" />
+      <img class="hangman" src={costume3} alt="Attempt 8" />
     {:else if attemptsLeft === 7}
-      <img class="hangman" src={costume4} alt="Image for Attempt 7" />
+      <img class="hangman" src={costume4} alt="Attempt 7" />
     {:else if attemptsLeft === 6}
-      <img class="hangman" src={costume5} alt="Image for Attempt 6" />
+      <img class="hangman" src={costume5} alt="Attempt 6" />
     {:else if attemptsLeft === 5}
-      <img class="hangman" src={costume6} alt="Image for Attempt 5" />
+      <img class="hangman" src={costume6} alt="Attempt 5" />
     {:else if attemptsLeft === 4}
-      <img class="hangman" src={costume7} alt="Image for Attempt 4" />
+      <img class="hangman" src={costume7} alt="Attempt 4" />
     {:else if attemptsLeft === 3}
-      <img class="hangman" src={costume8} alt="Image for Attempt 3" />
+      <img class="hangman" src={costume8} alt="Attempt 3" />
     {:else if attemptsLeft === 2}
-      <img class="hangman" src={costume9} alt="Image for Attempt 2" />
+      <img class="hangman" src={costume9} alt="Attempt 2" />
     {:else if attemptsLeft === 1}
-      <img class="hangman" src={costume10} alt="Image for Attempt 1" />
+      <img class="hangman" src={costume10} alt="Attempt 1" />
     {/if}
 
     <p>Attempts left: {attemptsLeft}</p>
@@ -179,12 +160,6 @@
     left: 50%;
     transform: translateX(30%);
     transform: translateY(30%);
-=======
-<style>
-  body {
-    margin: 0;
-    overflow: hidden;
-    font-family: 'Arial', sans-serif;
   }
 
   .game-container {
@@ -251,45 +226,5 @@
 
   .incorrect-guesses {
     margin-top: 10px;
->>>>>>> Stashed changes
   }
 </style>
-
-<div class="game-container">
-  <h1>{location.title}</h1>
-  {#if attemptsLeft === 10}
-    <img class="hangman" src={costume1} alt="Image for Attempt 10">
-  {:else if attemptsLeft === 9}
-    <img class="hangman" src={costume2} alt="Image for Attempt 9">
-  {:else if attemptsLeft === 8}
-    <img class="hangman" src={costume3} alt="Image for Attempt 8">
-  {:else if attemptsLeft === 7}
-    <img class="hangman" src={costume4} alt="Image for Attempt 7">
-  {:else if attemptsLeft === 6}
-    <img class="hangman" src={costume5} alt="Image for Attempt 6">
-  {:else if attemptsLeft === 5}
-    <img class="hangman" src={costume6} alt="Image for Attempt 5">
-  {:else if attemptsLeft === 4}
-    <img class="hangman" src={costume7} alt="Image for Attempt 4">
-  {:else if attemptsLeft === 3}
-    <img class="hangman" src={costume8} alt="Image for Attempt 3">
-  {:else if attemptsLeft === 2}
-    <img class="hangman" src={costume9} alt="Image for Attempt 2">
-  {:else if attemptsLeft === 1}
-    <img class="hangman" src={costume10} alt="Image for Attempt 1">
-  {/if}
-
-  <p>Attempts left: {attemptsLeft}</p>
-  <p>{displayWord.join(' ')}</p>
-  <div class="incorrect-guesses">
-    <p>Incorrect guesses: {incorrectGuesses.join(', ')}</p>
-  </div>
-  <div>
-    <input type="text" bind:value={guess} placeholder="Guess the letter" on:keydown={handleKeyPress}>
-  </div>
-  <div class="button-container">
-    <button on:click={() => makeGuess()}>Make Guess</button>
-    <button class="invisible" on:click={() => hint()}>?</button>
-    <button on:click={() => goToLocation('hall')}>Exit to hallway</button>
-  </div>
-</div>
