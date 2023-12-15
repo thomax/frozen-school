@@ -22,10 +22,6 @@
 </div>
 
 <style>
-  #gameComponent {
-    width: 80vw;
-    height: 83vh;
-  }
   .creator {
     margin-top: 15px;
     margin-bottom: 15px;

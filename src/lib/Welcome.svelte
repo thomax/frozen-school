@@ -10,7 +10,7 @@
   <h1>Welcome to the Frozen School!</h1>
   <p>
     You find yourself locked in a freezing school. Your mission is to explore the rooms, complete
-    tasks, and survive the cold. Can you survive the cold?
+    tasks, and stay alive. How long can you survive?
   </p>
   <button on:click={() => handleStatusChange('gameRunning')}>Start the game!</button>
 </div>
