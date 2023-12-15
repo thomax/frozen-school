@@ -5,6 +5,7 @@
     import SinkRoom from  '../../../assets/teodororjansen/SinkRoom.png'
     import sink1 from '../../../assets/teodororjansen/sink1.png'
     import { changeHealth, changeTemperature, removeFromInventory } from '../../dataStores/characterStore.js'
+    import Nisse from '../jscode1003/Nisse.svelte'
     let mainElement
     let message = ''
     
@@ -31,11 +32,11 @@
     <div class="readableText" >Sink<hr>The sink is frozen</div>
     <button on:click={() => goToLocation('toi')}>Go back</button>
     <img src="{sink1}" alt="sink" width="12%" height="" on:click={handleSinkClick} style="position: absolute; top: 29.6%; left: 43.5%;">
-    <h2><br><br>{message}</h2>
+    <Nisse message = {message}></Nisse>
     
 </div>
 
-<style>
+<style> 
     .SinkRoom{
         height: 90vh;
         width: 40vw;

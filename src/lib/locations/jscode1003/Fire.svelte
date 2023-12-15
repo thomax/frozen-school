@@ -28,34 +28,7 @@
       position: relative;
       margin: auto;
     }
-  
-    .button {
-      width: 150px;
-      position: absolute; 
-      top: 65%; 
-      left: 45%;
-    }
 
-    .nisse {
-    width: 90px;
-    position: absolute; 
-    top: 60%; 
-    left: 0.001%;
-    }
-
-    .message {
-    color: black;
-    background-color: #ff7d7df0;
-    border: 3px solid black;
-    padding: 15px;
-    width: 150px;
-    height: auto;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    position: absolute; 
-    top: 55%; 
-    left: 9%;
-  }
   </style>
   
   

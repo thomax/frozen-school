@@ -10,7 +10,6 @@
   let message = ""
   import Nisse from './Nisse.svelte'
 
-  
   onMount(() => {
     mainElement.style.background = `url('${DefaultLocker}')  no-repeat center center`
     mainElement.style.backgroundSize = 'cover'
@@ -40,6 +39,8 @@
   <Nisse message= {message}></Nisse>
 </div>
 
+
+
 <style>
   .img {
     height: 100vh;
@@ -53,27 +54,6 @@
     position: absolute; 
     top: 65%; 
     left: 45%;
-  }
-
-  .nisse {
-    width: 90px;
-    position: absolute; 
-    top: 60%; 
-    left: 0.001%;
-    }
-
-    .message {
-    color: black;
-    background-color: #7dffffef;
-    border: 3px solid black;
-    padding: 15px;
-    width: 150px;
-    height: auto;
-    font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    position: absolute; 
-    top: 55%; 
-    left: 9%;
   }
 </style>
 

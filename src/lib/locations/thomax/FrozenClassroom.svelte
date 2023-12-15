@@ -16,7 +16,7 @@
   <div class="readableText">
     What a chilly place to start this journey. You see a door which opens into a dark hallway.
   </div>
-  <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
+  <button on:click={() => goToLocation('hall')}>Exit to hallway</button>
 </div>
 
 <style>

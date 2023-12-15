@@ -32,7 +32,7 @@ const locationsConfig = [
   {
     id: 'hall',
     title: 'Hallway',
-    author: 'Henning',
+    author: 'HenningT05',
     component: HallWay
   },
   {
