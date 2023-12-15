@@ -4,7 +4,7 @@
   import toiletsImageSrc from '../../../assets/teodororjansen/toilets.png'
   import door1Handle from '../../../assets/teodororjansen/doorHandle.png'
   import sink from '../../../assets/teodororjansen/Sink.png'
-  import nisse from '../jscode1003/Nisse.svelte'
+  import Nisse from '../jscode1003/Nisse.svelte'
   export let location
   let mainElement
 
