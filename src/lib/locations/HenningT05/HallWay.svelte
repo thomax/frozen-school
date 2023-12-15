@@ -421,9 +421,9 @@
   #movmentTextDiv{
     position: fixed;
     top: 30%;
-    left: 45%;
-    width: 200px;
-    height: 100px;
+    left: 44%;
+    width: 250px;
+    height: 120px;
     background-color: gray;
     opacity: 0.9;
     z-index: 3;
