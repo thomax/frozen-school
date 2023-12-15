@@ -1,5 +1,11 @@
 <script>
-  import {character, changeTemperature, changeHealth} from './dataStores/characterStore.js'
+  import {
+    character,
+    changeTemperature,
+    changeHealth,
+    addToInventory,
+    removeFromInventory
+  } from './dataStores/characterStore.js'
   import {currentLocation} from './dataStores/locationStore.js'
   import {gameState, changeFreezeRate, setGameStatus} from './dataStores/stateStore.js'
 
@@ -7,6 +13,7 @@
   let localCharacter
   let localLocation
   let localFreezeRate = 1
+  let item
 
   // Handle update of game state
   function handleStatusChange(newStatus) {
@@ -24,6 +31,16 @@
   function handleChangeFreezeRate(multiplier) {
     localFreezeRate = localFreezeRate * multiplier
     changeFreezeRate(localFreezeRate)
+  }
+
+  function handleAddItem() {
+    addToInventory(item)
+    item = null
+  }
+
+  function handleRemoveItem() {
+    removeFromInventory(item)
+    item = null
   }
 
   // Listen for changes to character
@@ -59,16 +76,22 @@
   <hr />
 
   <div>
-    <button on:click={() => handleChangeTemperature(10)}>+ character temp</button>
+    Body temperature: <button on:click={() => handleChangeTemperature(10)}>+ character temp</button>
     <button on:click={() => handleChangeTemperature(-10)}>- character temp</button>
   </div>
   <div>
-    <button on:click={() => handleChangeHealth(10)}>+ character health</button>
+    Health: <button on:click={() => handleChangeHealth(10)}>+ character health</button>
     <button on:click={() => handleChangeHealth(-10)}>- character health</button>
   </div>
   <div>
-    <button on:click={() => handleChangeFreezeRate(2)}>+ freezeRate</button>
+    Freeze rate in Location: <button on:click={() => handleChangeFreezeRate(2)}>+ freezeRate</button
+    >
     <button on:click={() => handleChangeFreezeRate(0.5)}>- freezeRate</button>
+  </div>
+  <div>
+    Inventory: <input bind:value={item} placeholder="Inventory item" />
+    <button on:click={handleAddItem}>Add {item ? item : 'something'}</button>
+    <button on:click={handleRemoveItem}>Remove {item ? item : 'something'}</button>
   </div>
   <div>
     <h2>Location: {localLocation}</h2>
@@ -97,23 +120,22 @@
 
 <style>
   #devToolsComponent {
-    margin: 5%;
     font-family: Helvetica, Arial, system-ui, sans-serif;
     margin-top: 20px;
     padding-top: 10px;
     color: red;
     background-color: #eae0da;
     border-radius: 10px;
-
     opacity: 0.9;
     background-image: radial-gradient(#444cf7 0.5px, #e5e5f7 0.5px);
     background-size: 10px 10px;
   }
 
   table {
-    width: 60%;
+    width: 600px;
     table-layout: fixed;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
   tr {
     margin: 0;

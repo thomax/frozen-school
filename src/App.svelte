@@ -3,13 +3,20 @@
   import Game from './lib/Game.svelte'
   import GameOver from './lib/GameOver.svelte'
   import DeveloperTools from './lib/DeveloperTools.svelte'
-  import {gameState} from './lib/dataStores/stateStore.js'
+  import {gameState, setGameStatus} from './lib/dataStores/stateStore.js'
+
+  const urlParams = new URLSearchParams(window.location.search)
+  const enableDevMode = urlParams.get('devmode') === 'it2ftw'
 
   let currentGameStatus
 
-  // Listen to changes on location
+  // Listen for any changes to status
   gameState.subscribe((newGameState) => {
     currentGameStatus = newGameState.status
+  })
+
+  window.addEventListener('beforeunload', (event) => {
+    setGameStatus('gameOver')
   })
 </script>
 
@@ -23,7 +30,9 @@
   {:else}
     <div>Alas, {currentGameStatus} is an unknown game state :/</div>
   {/if}
-  <DeveloperTools />
+  {#if enableDevMode}
+    <DeveloperTools />
+  {/if}
 </main>
 
 <style src="./app.css"></style>

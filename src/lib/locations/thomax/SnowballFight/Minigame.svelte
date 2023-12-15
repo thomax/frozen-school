@@ -1,16 +1,20 @@
 <script>
   import kaboom from 'kaboom'
   import 'kaboom/global'
+  import {onMount} from 'svelte'
   import {changeHealth} from '../../../dataStores/characterStore.js'
   import {goToLocation} from '../../../dataStores/locationStore.js'
 
-  const canvasWidth = window.innerWidth * 0.9
-  const canvasHeight = window.innerHeight * 0.8
+  const mainElement = document.getElementById('gameComponent')
+  const canvasWidth = mainElement ? mainElement.offsetWidth : 800
+  const canvasHeight = mainElement ? mainElement.offsetHeight - 100 : 400
   const speed = 300 // Player movement speed
   const jumpForce = 500
-  const blockSizeX = canvasWidth / 32
+  const blockSizeX = canvasWidth / 30
   const blockSizeY = canvasHeight / 16
   const snowballSize = 10
+  const snowballSpawnRate = 0.7 // number of times per second a snowball spawns (lower is more often)
+  let isSpriteLoaded = false
 
   // Initialize Kaboom
   kaboom({
@@ -18,40 +22,50 @@
     height: canvasHeight,
     background: [0, 0, 0, 0.5]
   })
+
   loadSprite('player', 'http://localhost:3001/assets/HenningT/Player.png')
-  loadSprite('player', 'http://localhost:3001/assets/HenningT/Player.png')
+    .then(() => (isSpriteLoaded = true))
+    .catch(() => (isSpriteLoaded = false))
 
   scene('game', () => {
-    // define gravity
-    setGravity(2100)
+    setGravity(1800)
 
-    const player = add([
-      sprite('player'),
-      scale(0.06),
-      pos(canvasWidth / 2, canvasHeight / 2),
-      area(),
-      body(),
-      'player'
-    ])
+    const player = isSpriteLoaded
+      ? add([
+          sprite('player'),
+          scale(0.06),
+          pos(canvasWidth / 2, canvasHeight / 2),
+          area(),
+          body(),
+          'player'
+        ])
+      : add([
+          rect(30, 30),
+          color(255, 0, 0),
+          pos(canvasWidth / 2, canvasHeight / 2),
+          area(),
+          body(),
+          'player'
+        ])
 
     addLevel(
       [
-        '===========================   ==',
-        '=                              =',
-        '=                              =',
-        '=                              =',
-        '=                 =            =',
-        '=     =                        =',
-        '=                              =',
-        '=                              =',
-        '=                      =       =',
-        '=                              =',
-        '=       =                      =',
-        '=                =             =',
-        '=                              =',
-        '=                              =',
-        '=                              =',
-        '================================'
+        '=========================   ==',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=                    =       =',
+        '=       =                    =',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=                            =',
+        '=============================='
       ],
       {
         tileWidth: blockSizeX,
@@ -60,7 +74,6 @@
         tiles: {
           '=': () => [
             rect(blockSizeX, blockSizeY),
-            outline(0),
             color(127, 200, 255),
             area(),
             body({isStatic: true}),
@@ -76,21 +89,22 @@
       let velocity
       switch (side) {
         case 'left':
-          startX = snowballSize * 2
-          velocity = vec2(randi(100, 200), randi(10, 100))
+          startX = snowballSize * 3
+          velocity = vec2(randi(100, 200), 0)
           break
         case 'right':
-          startX = width() - snowballSize * 2
-          velocity = vec2(-randi(100, 200), randi(10, 100))
+          startX = width() - snowballSize * 3
+          velocity = vec2(-randi(100, 200), 0)
           break
       }
       const snowballPosition = vec2(startX, randi(0, height()))
+      const snowballSpeed = randi(800, 1800)
       add([
         circle(snowballSize),
         pos(snowballPosition),
         area(),
         body(),
-        move(player.pos.angle(snowballPosition), randi(500, 1400)),
+        move(player.pos.angle(snowballPosition), snowballSpeed),
         'snowball',
         offscreen({destroy: true})
       ])
@@ -123,7 +137,7 @@
     })
 
     // Spawn a snowball every so often
-    loop(1, () => {
+    loop(snowballSpawnRate, () => {
       spawnSnowball()
     })
 
@@ -143,14 +157,19 @@
     onUpdate('player', (player) => {
       if (player.pos.y < 0) {
         go('gameOver')
-        goToLocation('dh')
       }
     })
   })
 
   scene('gameOver', () => {
-    // Leaving the snowball arena...
+    goToLocation('dh')
   })
 
-  go('game')
+  // Wait until elements are in place before starting the game
+  // This should ensure that loadSprite completes the image loading
+  onMount(() => {
+    setTimeout(() => {
+      go('game')
+    }, 1000)
+  })
 </script>

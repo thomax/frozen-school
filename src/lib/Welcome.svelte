@@ -7,7 +7,7 @@
   }
 </script>
 
-<div id="welcome-component" class="gameStateBox">
+<div id="welcome-component">
   <h1>Welcome!</h1>
   <button on:click={() => handleStatusChange('gameRunning')}>Play the game!</button>
 </div>

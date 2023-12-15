@@ -3,10 +3,10 @@
   import {onMount} from 'svelte'
   import toiletsImageSrc from '../../../assets/teodororjansen/toilets.png'
   import door1Handle from '../../../assets/teodororjansen/doorHandle.png'
-  import sink from '../../../assets/teodororjansen/sink.png'
+  import sink from '../../../assets/teodororjansen/Sink.png'
   export let location
   let mainElement
-  
+
   onMount(() => {
     mainElement.style.background = `url('${toiletsImageSrc}')  no-repeat center center`
     mainElement.style.backgroundSize = 'cover'
@@ -16,14 +16,26 @@
 <div class="toilets" bind:this={mainElement}>
   <div class="readableText">Toilets</div>
   <button on:click={() => goToLocation('dh')}>Exit to hallway</button>
-  <img src="{door1Handle}" alt="doorHandle" width="4.5%" height="" style="position: absolute; top: 48.9%; left: 26.2%;" on:click= {() => goToLocation('toi1')} >
-  <img src="{sink}" alt="sink" width="10%" height="15%" style="position: absolute; top: 58.8%; left: 0.08%;" on:click= {() => goToLocation('sink')} >
+  <img
+    src={door1Handle}
+    alt="doorHandle"
+    width="4.5%"
+    height=""
+    style="position: absolute; top: 48.9%; left: 26.2%;"
+    on:click={() => goToLocation('toi1')}
+  />
+  <img
+    src={sink}
+    alt="sink"
+    width="10%"
+    height="15%"
+    style="position: absolute; top: 58.8%; left: 0.08%;"
+    on:click={() => goToLocation('sink')}
+  />
 </div>
 
-
-
 <style>
-  .toilets{
+  .toilets {
     color: red;
     height: 80vh;
     width: 55vw;

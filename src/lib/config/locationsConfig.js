@@ -1,6 +1,6 @@
 // @ts-nocheck
 import FrozenClassroom from '../locations/thomax/FrozenClassroom.svelte'
-import Hallway from '../locations/HenningT05/Hallway.svelte'
+import HallWay from '../locations/HenningT05/HallWay.svelte'
 import StrangeOffice from '../locations/philiptorrissen/StrangeOffice.svelte'
 import Room404 from '../locations/thomax/Room404.svelte'
 import Bibliotek from '../locations/aakonHO-IN/Bibliotek.svelte'
@@ -9,7 +9,7 @@ import LockerRoom from '../locations/NicolaiHindenes/LockerRoom.svelte'
 import Cafeteria from '../locations/shimarikuyo/Cafeteria.svelte'
 import DarkHallway from '../locations/thomax/DarkHallway.svelte'
 import TaskLibrary from '../locations/aakonHO-IN/TaskLibrary.svelte'
-import Toilet1 from '../locations/teodororjansen/Toilet1.svelte'
+import Toilet1 from '../locations/teodororjansen/toilet1.svelte'
 import Kitchen from '../locations/ruimatsiur/Kitchen.svelte'
 import Fridge from '../locations/ruimatsiur/Fridge.svelte'
 import sinkRoom from '../locations/teodororjansen/sinkRoom.svelte'
@@ -34,7 +34,7 @@ const locationsConfig = [
     id: 'hall',
     title: 'Hallway',
     author: 'Henning',
-    component: Hallway
+    component: HallWay
   },
   {
     id: 'dh',

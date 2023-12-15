@@ -11,19 +11,24 @@
   })
 </script>
 
-<div id="gameComponent" class="gameStateBox">
+<div id="gameComponent">
   <CharacterSheet />
   <svelte:component this={location.component} {location} />
-  <div class="locationCreator">
-    Location created by: <a href="https://github.com/{location.author}" target="_blank"
+  <div class="creator">
+    Location created by <a href="https://github.com/{location.author}" target="_blank"
       >{location.author}</a
     >
   </div>
 </div>
 
 <style>
-  .locationCreator {
+  #gameComponent {
+    width: 80vw;
+    height: 83vh;
+  }
+  .creator {
     margin-top: 15px;
+    margin-bottom: 15px;
     color: white;
     font-size: 0.8em;
   }
