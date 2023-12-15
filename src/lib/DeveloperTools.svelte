@@ -64,10 +64,12 @@
   <h3>Developer Tools</h3>
   {#if localGameState.status === 'welcome'}
     <button on:click={() => handleStatusChange('gameRunning')}>Play now!</button>
+    <button on:click={() => handleStatusChange('gameOver')}>Game Over Page</button>
   {:else if localGameState.status === 'gameRunning'}
-    <button on:click={() => handleStatusChange('welcome')}>Go to Welcome Page</button>
-    <button on:click={() => handleStatusChange('gameOver')}>Go to Game Over Page</button>
+    <button on:click={() => handleStatusChange('welcome')}>Welcome Page</button>
+    <button on:click={() => handleStatusChange('gameOver')}>Game Over Page</button>
   {:else if localGameState.status === 'gameOver'}
+    <button on:click={() => handleStatusChange('welcome')}>Welcome Page</button>
     <button on:click={() => handleStatusChange('gameRunning')}>Play again!</button>
   {:else}
     <div>{localGameState.status} is an unknown game state</div>
