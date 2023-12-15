@@ -27,6 +27,19 @@
     return (pixels / 100) * screenSize; // Regner ut høyden av objektet basert på prosentandelen
   }
 
+  function scalePixels(inputPixels) {
+      // Define the maximum width of the screen for full scale
+      const maxWidth = windowWidth; // Example: 1920 pixels for a full HD screen
+
+      // Calculate the scale factor based on the current screen width
+      const scaleFactor = windowWidth / maxWidth;
+
+      // Scale the input pixels according to the screen width
+      const scaledPixels = inputPixels * scaleFactor;
+
+      return scaledPixels;
+  }
+
     import mapOfSchool from "../../../assets/HenningT/MapHallway.png"
     import PressE from "../../../assets/HenningT/PressEButton.png"
     import Player from "../../../assets/HenningT/Player.png"
@@ -54,6 +67,8 @@
     let maxRotationSpeed = 4
 
     let pressE = false
+
+    let gameRunning = false
 
 
     function checkRotation(){
@@ -187,6 +202,7 @@
   
 
   function move(){
+    gameRunning = true
     if (isWDown == true){
       speed = speedUp()
       position = movePlayer(speed)
@@ -330,6 +346,10 @@
     checkCollisionDores()
   }
 
+  console.log(scalePixels(120))
+
+  const zoomLevel = window.innerWidth / document.documentElement.clientWidth;
+  console.log(zoomLevel)
   </script>
 
 <style>
@@ -360,7 +380,6 @@
   #PlayerSkin{
     left: -20px;
     top: -20px;
-    width: 50px;
     position: fixed;
     transform: rotate(-90deg);
   }
@@ -386,7 +405,6 @@
   #WhereToNavigateIMG{
     position: fixed;
 
-    width: 120px;
     transform: rotate(deg);
     opacity: 0.7;
   }
@@ -397,7 +415,24 @@
     color: black;
     font-size: 12px;
     z-index: 3;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family:'Silkscreen';
+  }
+
+  #movmentTextDiv{
+    position: fixed;
+    top: 30%;
+    left: 45%;
+    width: 200px;
+    height: 100px;
+    background-color: gray;
+    opacity: 0.9;
+    z-index: 3;
+    border-radius: 10px;
+  }
+
+  #moveText{
+    font-size: 20px;
+    font-family:'Silkscreen';
   }
 
 
@@ -406,7 +441,7 @@
 <div class="hallWayDiv" style="">
     <img id="background" src="{mapOfSchool}" alt="">
     <div id="Player" style="left: {position.x}px; top: {position.y}px; transform: rotate({rotation}deg);">
-      <img id="PlayerSkin" src="{Player}" alt="">
+      <img id="PlayerSkin" src="{Player}" alt="" style="width: {scalePixels(50)}px;">
       <div id="wallDectector" ></div>
       {#if pressE}
         <div id="pressEIcon">
@@ -416,11 +451,16 @@
       {/if}
     </div>
     {#if pressE}
-    <div>
-      <img id="WhereToNavigateIMG" src="{whereToNavigate}" alt="" style="left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px; transform: rotate({WhereToNavigateIMGRotation}deg);">
-        <p id="WhereToNavigateTekst" style="left: {positionWhereToNavigate.x+10}px; top: {positionWhereToNavigate.y + 10}px">Enter <br> {navigationEnterRoomText}<br>{howColdInRoom}℃</p>
-    </div>
-    
-    
+      <div>
+        <img id="WhereToNavigateIMG" src="{whereToNavigate}" alt="" style="width: {scalePixels(120)}px; left: {positionWhereToNavigate.x}px; top: {positionWhereToNavigate.y}px; transform: rotate({WhereToNavigateIMGRotation}deg);">
+          <p id="WhereToNavigateTekst" style="left: {positionWhereToNavigate.x+10}px; top: {positionWhereToNavigate.y + 10}px">Enter <br> {navigationEnterRoomText}<br>{howColdInRoom}℃</p>
+      </div>
     {/if}
+
+    {#if !gameRunning}
+      <div id="movmentTextDiv">
+        <p id="moveText">Use (W,S,A,D) or the arrowkeys to move</p>
+      </div>
+    {/if}
+   
 </div>

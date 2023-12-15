@@ -13,7 +13,6 @@ import Toilet1 from '../locations/teodororjansen/toilet1.svelte'
 import Kitchen from '../locations/ruimatsiur/Kitchen.svelte'
 import Fridge from '../locations/ruimatsiur/Fridge.svelte'
 import sinkRoom from '../locations/teodororjansen/sinkRoom.svelte'
-
 import Classroom3 from '../locations/jonabarona/Classroom3.svelte'
 import LockerWithFireplace from '../locations/jscode1003/LockerWithFireplace.svelte'
 
