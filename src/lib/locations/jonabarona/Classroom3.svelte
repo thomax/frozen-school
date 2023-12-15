@@ -1,4 +1,5 @@
 <script>
+  // My imported variables
   import {onMount} from 'svelte'
   import {goToLocation} from '../../dataStores/locationStore.js'
   import {changeTemperature} from '../../dataStores/characterStore'
@@ -12,8 +13,9 @@
 
   export let location
 
+// My variables
   let randomPosY;
-  let randomPosX = Math.floor(Math.random() * 900) + 100;
+  let randomPosX = Math.floor(Math.random() * 900) + 100; // Generate a random 3-didgit X coordinate
   let randomCode = Math.floor(Math.random() * 9000) + 1000; // Generate a random 4-digit code
   let inputCode = "";
   let mainElement;
@@ -25,34 +27,41 @@
   let roomPostitButtonVisible = true;
   let postitBackToRoom = false;
 
+  // Classroom image is the standard background. The freezerate is different here
   onMount(() => {
     mainElement.style.background = `url('${classroom3}')  no-repeat center center`
     mainElement.style.backgroundSize = 'cover'
     changeFreezeRate(1.5)
+    console.log("NOW SHOWING: Classroom3")
   })
 
+  // Runs the random Y coordinate for the postit
   onMount(() => {
     generateRandomNumber();
   });
 
+  // Makes a random number between x1 and x2
   function generateRandomNumber() {
     // Generate a random number between 0 (inclusive) and 1 (exclusive)
     const randomFraction = Math.random();
     randomPosY = Math.round(240 + randomFraction * (600 - 240));
-    console.log(randomPosY)
+    console.log("POSTIT POSITION: X:",randomPosX, "Y:",randomPosY); //Check if postit position
   }
 
+  //The room becomes the background
   function handleRoom() {
     //back to class
-    mainElement.style.background = `url('${classroom3}') no-repeat center center`
-    mainElement.style.backgroundSize = 'cover'
-    postitVisible = false
-    lockerVisible = false
-    roomVisible = true
-    roomPostitButtonVisible = true
-    postitBackToRoom = false
+    mainElement.style.background = `url('${classroom3}') no-repeat center center`;
+    mainElement.style.backgroundSize = 'cover';
+    postitVisible = false;
+    lockerVisible = false;
+    roomVisible = true;
+    roomPostitButtonVisible = true;
+    postitBackToRoom = false;
+    console.log("NOW SHOWING: Classroom3")
   }
 
+  //Postit becomes the background
   function handlePostit() {
     postitVisible = true
     lockerVisible = false
@@ -64,9 +73,11 @@
       mainElement.style.backgroundSize = 'cover'
       position = {x: 600, y: 800}
       roomVisible = false
+      console.log("NOW SHOWING: Postit")
     }
   }
 
+  // locker becomes the background
   function handleLocker() {
     lockerVisible = true
     if (lockerVisible) {
@@ -74,7 +85,8 @@
       mainElement.style.backgroundSize = 'cover'
       position = {x: 600, y: 800}
       roomPostitButtonVisible = false
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
+      console.log("NOW SHOWING: Open Locker")
       
       
     } else {
@@ -85,28 +97,37 @@
     }
   }
 
+  //Checks if code worked
   function handleCheckCode() {
     if (inputCode === randomCode.toString()) {
       mainElement.style.background = `url('${openLocker}') no-repeat center center`
       mainElement.style.backgroundSize = 'cover'
       lockerOpenVisible = true
+      console.log("NOW SHOWING: Open Locker")
     } else {
-      console.log("Incorrect code");
+      console.log("ENTERED: Incorrect code");
+
     }
   }
 
+  //Adds x number to the temperature
   function handleAddTemp() {
     changeTemperature(20)
     lockerOpenVisible = false; // Set showButton to false when the button is clicked
+    console.log("PICKED UP: Warm drink")
   }
 
+  // Gives a tip
   function handleTip() {
     alert("Click around to see if there are something useful.")
     changeTemperature(-5)
+    console.log("CHECKED: Tips")
   }
 </script>
 
+<!--Classroom-->
 <div class="classroom" bind:this={mainElement}>
+  <!--When you go to postit-->
   {#if postitVisible}
     <div class="postitCode">
       <p class="readableText">Maybe this number can come in handy..?</p>
@@ -117,6 +138,7 @@
     </div>
   {/if}
 
+  <!--When you go to locker-->
   {#if lockerVisible}
     <div class="locker">
     <p class="readableText">Ugh.. this locker won't open..</p>
@@ -128,6 +150,7 @@
     </div>
   {/if}
 
+  <!--What you see first/When you press goBackBtn-->
   {#if roomVisible}
   <h1>{location.title}</h1>
   <p class="readableText">
@@ -136,6 +159,7 @@
     <button on:click={handleTip}>See a tip? Cost: 5seconds)</button>
     <button class="hallwayBtn" on:click={() => goToLocation('hall')}>Exit to hallway</button>
     <div class="postitCode">
+      <!--When you see postit in room-->
       {#if roomPostitButtonVisible}
         <button title="Whats that?" on:click={handlePostit} class="postitBtn" style={`top: ${randomPosY}px; left: ${randomPosX}px;`}>
           <img src={postitLapp1} class="postitFar" />
@@ -145,6 +169,7 @@
     </div>
   {/if}
 
+  <!--When the locker is open-->
   {#if lockerOpenVisible}
     <img title="A warm drink that might help" on:click={handleAddTemp} id="warmDrink" src="{kakao}" alt="">
   {/if}
