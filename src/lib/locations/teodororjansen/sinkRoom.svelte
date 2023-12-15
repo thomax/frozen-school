@@ -36,7 +36,7 @@
     
 </div>
 
-<style>
+<style> 
     .SinkRoom{
         height: 90vh;
         width: 40vw;
