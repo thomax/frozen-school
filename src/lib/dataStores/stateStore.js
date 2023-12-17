@@ -6,12 +6,11 @@ import { goToLocation } from './locationStore.js'
 const defaultFreezeRate = 1
 const defaultStartLocation = 'fc307'
 let countdownInterval
-let localFreezeRate
-let localCharacter
 
 
 const defaultGameState =  {
   status: "welcome",
+  secondsLasted: 0,
   freezeRate: defaultFreezeRate,
   beganAt: null,
   endedAt: null
@@ -40,6 +39,7 @@ export function setGameStatus(newStatus) {
     currentGameState.freezeRate = defaultFreezeRate
     currentGameState.beganAt = new Date()
     currentGameState.endedAt = null
+    currentGameState.secondsLasted = 0
     startTemperatureCountDown()
     goToLocation(defaultStartLocation)
   }
@@ -51,9 +51,7 @@ export function setGameStatus(newStatus) {
 }
 
 export function getGameDuration() {
-  const tempState = get(gameState)
-  const duration = new Date(tempState.endedAt).getTime() - new Date(tempState.beganAt).getTime()
-  return Math.floor(duration/1000)
+  return get(gameState).secondsLasted
 }
 
 // Call this to adjust the rate at which the character gets golder
@@ -69,8 +67,15 @@ export function changeFreezeRate(multiplier) {
 function startTemperatureCountDown() {
   if (!countdownInterval) {
     countdownInterval = setInterval(() => {
-      const charUpdate = {temperature: localCharacter.temperature - localFreezeRate}
-      updateCharacter(charUpdate)
+      // Update secondsLasted
+      const currentGameState = get(gameState)
+      const updatedGameState = Object.assign(currentGameState, {secondsLasted:       currentGameState.secondsLasted + 1})
+      gameState.set(updatedGameState)
+
+      // Update character
+      const currentCharacter = get(character)
+      const updatedCharacter = {temperature: currentCharacter.temperature - updatedGameState.freezeRate}
+      updateCharacter(updatedCharacter)
     }, 1000)
   }
 }
@@ -85,7 +90,6 @@ function stopTemperatureCountDown() {
 
 // React to changes in character
 character.subscribe((updatedCharacter) => {
-  localCharacter = updatedCharacter
     const {temperature, health} = updatedCharacter || {}
     if (temperature <= 0) {
       // End game if death by freezing
@@ -100,6 +104,5 @@ character.subscribe((updatedCharacter) => {
 
 // Whenever gameState changes, write it to localStorage
 gameState.subscribe((updatedGameState) => {
-  localFreezeRate = updatedGameState.freezeRate
   localStorage.gameState = JSON.stringify(updatedGameState)
 })

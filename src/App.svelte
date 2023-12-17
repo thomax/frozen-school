@@ -14,11 +14,6 @@
   gameState.subscribe((newGameState) => {
     currentGameStatus = newGameState.status
   })
-
-  // End game if user quits browser or closes tab
-  window.addEventListener('beforeunload', (event) => {
-    setGameStatus('gameOver')
-  })
 </script>
 
 <main>
