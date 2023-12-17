@@ -10,7 +10,6 @@
   const canvasWidth = mainElement ? mainElement.offsetWidth : 800
   const canvasHeight = mainElement ? mainElement.offsetHeight - 100 : 400
   const speed = 300 // Player movement speed
-  const jumpForce = 500
   const gravity = 1800 // affects both player and snowballs
   const blockSizeX = canvasWidth / 30
   const blockSizeY = canvasHeight / 16
@@ -29,9 +28,10 @@
     .then(() => (isSpriteLoaded = true))
     .catch(() => (isSpriteLoaded = false))
 
-  scene('game', () => {
+  scene('playing', () => {
     setGravity(gravity)
 
+    // if player sprite never loads, use a red rectangle
     const player = isSpriteLoaded
       ? add([
           sprite('player'),
@@ -50,6 +50,7 @@
           'player'
         ])
 
+    // Add the map
     addLevel(
       [
         '=========================   ==',
@@ -85,6 +86,7 @@
       }
     )
 
+    // Snowballs spawn randomly right/left
     function spawnSnowball() {
       const side = Math.random() > 0.5 ? 'left' : 'right'
       let startX
@@ -110,12 +112,6 @@
         'snowball',
         offscreen({destroy: true})
       ])
-    }
-
-    function jump() {
-      if (player.isGrounded()) {
-        player.jump(jumpForce)
-      }
     }
 
     // Player control logic
@@ -156,23 +152,43 @@
       destroy(snowball2)
     })
 
-    // The game ends when the player exits at the upper edge of the screen
+    // Game ends when player exits at upper edge of screen
     onUpdate('player', (player) => {
       if (player.pos.y < 0) {
-        go('gameOver')
+        go('exitSuccessful')
       }
     })
   })
 
-  scene('gameOver', () => {
-    goToLocation('hall')
+  scene('exitSuccessful', () => {
+    add([
+      text('You dodged your way out of the snowball fight!', {
+        font: 'Silkscreen',
+        align: 'center',
+        width: canvasWidth * 0.6
+      }),
+      pos(center()),
+      anchor('center')
+    ])
+    setTimeout(() => {
+      goToLocation('hall')
+    }, 2000)
   })
 
-  // Wait until elements are in place before starting the game
-  // This should ensure that loadSprite completes the image loading
+  // Wait to ensure that loadSprite completes the image loading
   onMount(() => {
+    add([
+      text("Snowballs! As long as you dodge, you'll stay warmer!", {
+        font: 'Silkscreen',
+        align: 'center',
+        width: canvasWidth * 0.6
+      }),
+      pos(center()),
+      anchor('center')
+    ])
+
     setTimeout(() => {
-      go('game')
-    }, 1000)
+      go('playing')
+    }, 1500)
   })
 </script>
