@@ -4,6 +4,7 @@
   import {onMount} from 'svelte'
   import {changeHealth} from '../../../dataStores/characterStore.js'
   import {goToLocation} from '../../../dataStores/locationStore.js'
+  import playerImcSrc from '../../../../assets/HenningT/Player.png'
 
   const mainElement = document.getElementById('gameComponent')
   const canvasWidth = mainElement ? mainElement.offsetWidth : 800
@@ -23,7 +24,9 @@
     background: [0, 0, 0, 0.5]
   })
 
-  loadSprite('player', 'http://localhost:3001/assets/HenningT/Player.png')
+  console.log('playerSprite', playerImcSrc)
+  //  loadSprite('player', 'http://localhost:3001/assets/HenningT/Player.png')
+  loadSprite('player', playerImcSrc)
     .then(() => (isSpriteLoaded = true))
     .catch(() => (isSpriteLoaded = false))
 
