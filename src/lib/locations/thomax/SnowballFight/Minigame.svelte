@@ -11,6 +11,7 @@
   const canvasHeight = mainElement ? mainElement.offsetHeight - 100 : 400
   const speed = 300 // Player movement speed
   const jumpForce = 500
+  const gravity = 1800 // affects both player and snowballs
   const blockSizeX = canvasWidth / 30
   const blockSizeY = canvasHeight / 16
   const snowballSize = 10
@@ -24,14 +25,12 @@
     background: [0, 0, 0, 0.5]
   })
 
-  console.log('playerSprite', playerImcSrc)
-  //  loadSprite('player', 'http://localhost:3001/assets/HenningT/Player.png')
   loadSprite('player', playerImcSrc)
     .then(() => (isSpriteLoaded = true))
     .catch(() => (isSpriteLoaded = false))
 
   scene('game', () => {
-    setGravity(1800)
+    setGravity(gravity)
 
     const player = isSpriteLoaded
       ? add([
@@ -157,6 +156,7 @@
       destroy(snowball2)
     })
 
+    // The game ends when the player exits at the upper edge of the screen
     onUpdate('player', (player) => {
       if (player.pos.y < 0) {
         go('gameOver')
@@ -165,7 +165,7 @@
   })
 
   scene('gameOver', () => {
-    goToLocation('dh')
+    goToLocation('hall')
   })
 
   // Wait until elements are in place before starting the game
