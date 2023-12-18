@@ -8,6 +8,7 @@
   import greenSock from '../../../assets/NicolaiHindenes/GreenSock.png'
   import blueSock from '../../../assets/NicolaiHindenes/BlueSock.png'
   import yellowSock from '../../../assets/NicolaiHindenes/YellowSock.png'
+  import box from '../../../assets/NicolaiHindenes/box.png'
   export let location
 
   let mainElement
@@ -21,16 +22,24 @@
 
   function startSorting() {
     showSorting = true
+<<<<<<< Updated upstream
     ;(DraggableRedSockX = 54),
       (DraggableRedSockY = 0),
       (DraggableRedSockWidth = 80),
       (DraggableRedSockHeight = 30)
+=======
+  DraggableRedSockX = 50, 
+  DraggableRedSockY = 0, 
+  DraggableRedSockWidth = 80, 
+  DraggableRedSockHeight = 30
+>>>>>>> Stashed changes
 
     ;(DraggableBlueSockX = 0),
       (DraggableBlueSockY = 104),
       (DraggableBlueSockWidth = 80),
       (DraggableBlueSockHeight = 30)
 
+<<<<<<< Updated upstream
     ;(DraggableGreenSockX = 75),
       (DraggableGreenSockY = 163),
       (DraggableGreenSockWidth = 80),
@@ -50,6 +59,23 @@
       yellowSockInCorrectZone
     ) {
       alert('Congratulations! Socks sorted correctly!')
+=======
+  DraggableGreenSockX = 159, 
+  DraggableGreenSockY = 9, 
+  DraggableGreenSockWidth = 80, 
+  DraggableGreenSockHeight = 30
+
+  DraggableYellowSockX = 147, 
+  DraggableYellowSockY = 137, 
+  DraggableYellowSockWidth = 80, 
+  DraggableYellowSockHeight = 30
+  }
+
+  function finishSorting() {
+    if (redSockInCorrectZone && blueSockInCorrectZone && greenSockInCorrectZone && yellowSockInCorrectZone) {
+      alert('Congratulations! Socks sorted correctly!');
+      changeTemperature(20)
+>>>>>>> Stashed changes
     } else {
       alert('Not all socks are in the correct drop zones. Please try again.')
     }
@@ -61,7 +87,11 @@
 
     showSorting = false
 
+<<<<<<< Updated upstream
     changeTemperature(20)
+=======
+    showSorting = false;
+>>>>>>> Stashed changes
   }
 
   function onDropped(
@@ -151,6 +181,24 @@
     DraggableYellowSockY = y
   }
 
+<<<<<<< Updated upstream
+=======
+  let DraggableYellowSockX = 140, 
+  DraggableYellowSockY = 20, 
+  DraggableYellowSockWidth = 80, 
+  DraggableYellowSockHeight = 30
+  
+  let ArenaWidth = 700, 
+  ArenaHeight = 250
+  
+  function onDragMoveRed (x,y, dx,dy) { DraggableRedSockX = x; DraggableRedSockY = y }
+  function onDragMoveBlue (x,y, dx,dy) { DraggableBlueSockX = x; DraggableBlueSockY = y }
+  function onDragMoveGreen (x,y, dx,dy) { DraggableGreenSockX = x; DraggableGreenSockY = y }
+  function onDragMoveYellow (x,y, dx,dy) { DraggableYellowSockX = x; DraggableYellowSockY = y }
+  
+  
+  
+>>>>>>> Stashed changes
   onMount(() => {
     mainElement.style.background = `url('${lockerRoom}')  no-repeat center center`
     mainElement.style.backgroundSize = 'cover'
@@ -159,8 +207,27 @@
 
 <div class="lockerRoom" bind:this={mainElement}>
   <h1>{location.title}</h1>
-  <div>Locker Room</div>
+  <p class="readableText">
+    brrrr.. this is a cold place.. Click around to see if there is something usefull here.
+  </p>
   <button on:click={() => goToLocation('hall')}>Exit to hallway</button>
+<<<<<<< Updated upstream
+=======
+  
+  
+  {#if !showSorting}
+  <button style="cursor: pointer;" on:click={startSorting}>
+    <img src={box} 
+    alt="box" 
+    style="position: absolute; width: 17%; left: 32%; top: 57%;  "
+    >
+  </button>
+  {/if}
+  
+  {#if showSorting}
+  <div class="gameContainer" style="width:{ArenaWidth}px; height:{ArenaHeight}px;">
+    <h2>Sort the socks</h2>
+>>>>>>> Stashed changes
 
   {#if !showSorting}
     <button on:click={startSorting}>Start Game</button>
@@ -317,8 +384,9 @@
 
 <style>
   .lockerRoom {
-    height: 100vh;
-    width: 100%;
+    height: 80vh;
+    width: 55vw;
+    margin: auto;
   }
 
   .sockImage {
@@ -341,6 +409,7 @@
     text-align: center;
     margin: 20px;
   }
+<<<<<<< Updated upstream
 
   .redDropZone {
     position: absolute;
@@ -388,5 +457,54 @@
     color: white;
     line-height: 50px;
     text-align: center;
+=======
+  
+  .redDropZone{
+    position:absolute;
+    left:340px; 
+    top:20px; 
+    width:140px; 
+    height:50px;
+    background:red; 
+    color:white;
+    line-height:50px; 
+    text-align:center;
+  }
+
+  .blueDropZone{
+    position:absolute;
+    left:340px; 
+    top:180px; 
+    width:140px; 
+    height:50px;
+    background:blue; 
+    color:white;
+    line-height:50px; 
+    text-align:center;
+  }
+
+  .greenDropZone{
+    position:absolute;
+    left:540px; 
+    top:20px; 
+    width:140px; 
+    height:50px;
+    background:green; 
+    color:white;
+    line-height:50px; 
+    text-align:center;
+  }
+
+  .yellowDropZone{
+    position:absolute;
+    left:540px; 
+    top:180px; 
+    width:140px; 
+    height:50px;
+    background:yellow; 
+    color:white;
+    line-height:50px; 
+    text-align:center;
+>>>>>>> Stashed changes
   }
 </style>
