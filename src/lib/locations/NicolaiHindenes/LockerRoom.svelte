@@ -176,7 +176,7 @@
   {/if}
 
   {#if showSorting}
-    <div class="gameContainer" style="width:{ArenaWidth}px; height:{ArenaHeight}px; top: 30%; display: inline-block;">
+    <div class="gameContainer" style="width: 100%; height: 50%; top: 30%; display: inline-block;">
       <h2>Sort the socks</h2>
 
       <div
@@ -200,7 +200,7 @@
           onDropped
         }}
       >
-        <img src={redSock} alt="sock" style=" width: 200%; height: 400%;" />
+        <img src={redSock} alt="sock" style=" width: 100%; height: 330%;" />
       </div>
 
       <div
@@ -224,7 +224,7 @@
           onDropped
         }}
       >
-        <img src={blueSock} alt="sock" style=" width: 200%; height: 400%;" />
+        <img src={blueSock} alt="sock" style=" width: 100%; height: 330%;" />
       </div>
 
       <div
@@ -248,7 +248,7 @@
           onDropped
         }}
       >
-        <img src={greenSock} alt="sock" style=" width: 200%; height: 400%;" />
+        <img src={greenSock} alt="sock" style=" width: 100%; height: 330%;" />
       </div>
 
       <div
@@ -272,7 +272,7 @@
           onDropped
         }}
       >
-        <img src={yellowSock} alt="sock" style=" width: 200%; height: 400%;" />
+        <img src={yellowSock} alt="sock" style=" width: 90%; height: 330%;" />
       </div>
 
       <div
