@@ -3,12 +3,14 @@
   import Game from './lib/Game.svelte'
   import GameOver from './lib/GameOver.svelte'
   import DeveloperTools from './lib/DeveloperTools.svelte'
-  import {gameState, setGameStatus} from './lib/dataStores/stateStore.js'
-
-  const urlParams = new URLSearchParams(window.location.search)
-  const enableDevMode = urlParams.get('devmode') === 'it2ftw'
+  import {gameState} from './lib/dataStores/stateStore.js'
 
   let currentGameStatus
+
+  function isDevModeEnabled() {
+    const urlParams = new URLSearchParams(window.location.search)
+    return urlParams.get('devmode') === 'it2ftw'
+  }
 
   // Listen for any changes to status
   gameState.subscribe((newGameState) => {
@@ -26,7 +28,7 @@
   {:else}
     <div>Alas, {currentGameStatus} is an unknown game state :/</div>
   {/if}
-  {#if enableDevMode}
+  {#if isDevModeEnabled()}
     <DeveloperTools />
   {/if}
 </main>
