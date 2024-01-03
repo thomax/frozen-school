@@ -3,7 +3,7 @@
     import {onMount} from 'svelte'
     import frozenWall from '../../../assets/ruimatsiur/frozenWall.jpg';
     import banana from '../../../assets/ruimatsiur/banana.png';
-
+    import { changeHealth } from '../../dataStores/characterStore.js'
     export let location
     let mainElement
 
@@ -14,6 +14,9 @@
 
     function eatFood(){
         changeHealth(3)
+        if (health >= 100){
+            changeHealth(0)
+        }
     }
     
 </script>

@@ -31,11 +31,11 @@
 
 }
 .Fridge{
-  width: 130px;
-  height: 270px;
+  width: 145px;
+  height: 285px;
   position: absolute;
-  top:50%;
-  left: 43%;
+  top:49%;
+  left: 46%;
 }
 
 </style>
