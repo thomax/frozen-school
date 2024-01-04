@@ -2,7 +2,7 @@
   import kaboom from 'kaboom'
   import 'kaboom/global'
   import {onMount} from 'svelte'
-  import {changeHealth} from '../../../dataStores/characterStore.js'
+  import {character, changeHealth} from '../../../dataStores/characterStore.js'
   import {goToLocation} from '../../../dataStores/locationStore.js'
   import playerImcSrc from '../../../../assets/HenningT/Player.png'
 
@@ -175,7 +175,10 @@
     }, 2000)
   })
 
-  // Wait to ensure that loadSprite completes the image loading
+  scene('exitFailed', () => {
+    // Let stateStore handle game end logic
+  })
+
   onMount(() => {
     add([
       text("Snowballs! As long as you dodge, you'll stay warmer!", {
@@ -187,8 +190,19 @@
       anchor('center')
     ])
 
+    // Wait to ensure that loadSprite completes the image loading
     setTimeout(() => {
       go('playing')
     }, 1500)
+  })
+
+  // React to death
+  character.subscribe((updatedCharacter) => {
+    if (updatedCharacter) {
+      const {health, temperature} = updatedCharacter
+      if (health <= 0 || temperature <= 0) {
+        go('exitFailed')
+      }
+    }
   })
 </script>

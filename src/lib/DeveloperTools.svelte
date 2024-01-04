@@ -6,7 +6,7 @@
     addToInventory,
     removeFromInventory
   } from './dataStores/characterStore.js'
-  import {currentLocation} from './dataStores/locationStore.js'
+  import {currentLocation, goToLocation} from './dataStores/locationStore.js'
   import {gameState, changeFreezeRate, setGameStatus} from './dataStores/stateStore.js'
 
   let localGameState
@@ -61,7 +61,19 @@
 </script>
 
 <div id="devToolsComponent">
-  <h3>Developer Tools</h3>
+  <button on:click={() => goToLocation('hall')}>Henning</button>
+  <button on:click={() => goToLocation('bi')}>Håkon</button>
+  <button on:click={() => goToLocation('lf')}>Jenny</button>
+  <button on:click={() => goToLocation('norcl')}>Jonatan</button>
+  <button on:click={() => goToLocation('caf')}>Mathias</button>
+  <button on:click={() => goToLocation('ki')}>Mats</button>
+  <button on:click={() => goToLocation('lr')}>Nicolai</button>
+  <button on:click={() => goToLocation('so')}>Philip</button>
+  <button on:click={() => goToLocation('toi')}>Teodor</button>
+  <button on:click={() => goToLocation('sbf')}>Thomas</button>
+
+  <hr />
+
   {#if localGameState.status === 'welcome'}
     <button on:click={() => handleStatusChange('gameRunning')}>Play now!</button>
     <button on:click={() => handleStatusChange('gameOver')}>Game Over Page</button>
@@ -96,7 +108,7 @@
     <button on:click={handleRemoveItem}>Remove {item ? item : 'something'}</button>
   </div>
   <div>
-    <h2>Location: {localLocation}</h2>
+    <h2>Location: "{localLocation}"</h2>
     <h2>Game data</h2>
     <table>
       {#each Object.keys(localGameState) as key}
@@ -123,7 +135,7 @@
 <style>
   #devToolsComponent {
     font-family: Helvetica, Arial, system-ui, sans-serif;
-    margin-top: 20px;
+    margin-top: 140px;
     padding-top: 10px;
     color: red;
     background-color: #eae0da;

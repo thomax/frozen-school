@@ -70,6 +70,10 @@ export function inventoryContains(item) {
   return inventory.includes(itemToCheck)
 }
 
+// Snapshot of character
+export function getCharacter() {
+  return get(character)
+}
 
 // Whenever character changes, write it to localStorage
 character.subscribe((updatedCharacter) => {
